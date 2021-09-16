@@ -1,0 +1,111 @@
+#outer-body {
+  width: 400px;
+  height: 690px;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.answer-outer-row {
+  display: flex;
+  width: 378px;
+  height: 50px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin: 5px 0 0 10px;
+}
+
+.answer-inner-row {
+  display: flex;
+  width: 250px;
+  height: 39px;
+  border: 1px solid red;
+  margin: 0 auto;
+  margin: 5px 0px 0px 10px;
+}
+
+.answer-pin {
+  width: 50px;
+  height: 35px;
+  border: 1px solid blue;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin: 1px 10px 0px 10px;
+}
+
+.submit {
+  width: 60px;
+  height: 39px;
+  border: 1px solid blue;
+  margin: 0 auto;
+  margin: 5px 0 0 40px;
+}
+
+.outer-guess-row {
+  display: flex;
+  width: 378px;
+  height: 50px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin: 5px 0 0 10px;
+}
+
+.guess-row-pin {
+  display: flex;
+  width: 378px;
+  height: 40px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin: 5px 0 0 10px;
+}
+
+.guess-row-result {
+  display: flex;
+  width: 100px;
+  height: 40px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin: 5px 10px 0 10px;
+}
+
+.guess-pin {
+  width: 40px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin: 5px 10px 10px 10px;
+}
+
+.guess-result {
+  width: 50px;
+  height: 25px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin: 5px -10px 25px 10px;
+}
+
+.select-row {
+  display: flex;
+  width: 378px;
+  height: 50px;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin: 5px 0 0 10px;
+}
+
+.select-pin {
+  width: 50px;
+  height: 39px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin: 5px 0 0 10px;
+}
+
+.select-pin:hover {
+  border: 1px solid red;
+}
+
+.guess-pin:hover {
+  border: 1px solid red;
+}
