@@ -73,24 +73,30 @@ const selectPin = () =>{
             console.log($chosenColor)
 
             $(".guess-pin.active").on("click", (event)=>{
+
+                if ($(event.target).hasClass("active")){
+                    $(event.target).css("background-color", $chosenColor)
                 
-                $(event.target).css("background-color", $chosenColor)
-                
-                ///////////////////////////////////////////////////
-                //   Click again to remove the color
-                     $(".guess-pin.active").on("click", (event)=>{
-        
-                        $(event.target).css("background-color", "white")
+
+                } 
+                // else{
+
+                  ///////////////////////////////////////////////////
+                    //   Click again to remove the color
+            //         $(".guess-pin.active").on("click", (event)=>{
+            //             $(event.target).css("background-color", "white")
                         
-            })
+            // })
                 //////////////////////////////////////////////////
+                    
+                //}
+                
+
             
             })
 
-
         })
 
-    
 }
 
 
@@ -108,20 +114,18 @@ const submitButton = () =>{
     $(".active").removeClass("active")
 
 
-
-    
-    
     console.log("current row: ", currentRow)
     currentRow++
     
     
-    // Move .active class one row upwards
+    // Move .active class one row upwards and store guess pin colors in array
     for (let i = 0; i < 4; i++){
         $(`#gpin_${currentRow}_${i}`).addClass("active")
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`))
         
     }
 
+    // store the colors in current row upon click of submit button
     for (let i = 0; i < 4; i++){
 
         storedCurrentRowColor[i].parent()[0]
@@ -140,13 +144,6 @@ const submitButton = () =>{
 
     
 
-
-
-
-    
-    
-
-    
 })
 }
 
