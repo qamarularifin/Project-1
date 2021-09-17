@@ -109,3 +109,7 @@
 .guess-pin:hover {
   border: 1px solid red;
 }
+
+.org-color {
+  background-color: white;
+}
