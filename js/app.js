@@ -11,6 +11,25 @@ const colors = [
 ]
 
 
+const displayColors = (id, index) =>{
+
+    const masterArr = [    
+
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+        [0,0,0,0],
+    ]
+}
+
+
+
 
 let originalBackground = "rgb(255, 255, 255)"
 let guessReversedArray = []
@@ -42,22 +61,6 @@ const reverseGuessRowPin = () =>{
     //console.log(guessReversedArray)
 }
 
-// let revPinPos = []
-
-// const reverseAddIdPin = () =>{
-
-//     for (let i = 40; i >= 0; i--){
-        
-        
-//         revPinPos.push($(".guess-pin")[i])
-    
-//         }    
-//         //console.log(revPinPos[2])  
-// }
-
-
-
-
 
 const selectPin = () =>{
     // Select color and assign selected peg with the color
@@ -65,15 +68,10 @@ const selectPin = () =>{
 
     console.log("current row: ", currentRow)
     
-
-    
-
         $(".select-pin").on("click", (event) =>{
             $chosenColor = $(event.target).css("background-color")
             console.log($chosenColor)
 
-         
-        
             $(".guess-pin.active").on("click", (event)=>{
                 
                 $(event.target).css("background-color", $chosenColor)
@@ -82,7 +80,7 @@ const selectPin = () =>{
                 //   Click again to remove the color
                      $(".guess-pin.active").on("click", (event)=>{
         
-                        $(event.target).css("background", "white")
+                        $(event.target).css("background-color", "white")
                         
             })
                 //////////////////////////////////////////////////
@@ -100,30 +98,52 @@ const selectPin = () =>{
 
 const submitButton = () =>{
 
-    // store the colors in current row upon click of submit button
+
     
-    for (let i = 0; i < 4; i++){
-        storedCurrentRowColor.push(guessPinArr[i])
-        
-    }
-    console.log($(storedCurrentRowColor)[0])
+    
     
 
    $(".submit").on("click", ()=>{
     // Remove all .active class
     $(".active").removeClass("active")
 
+
+
     
     
     console.log("current row: ", currentRow)
+    currentRow++
     
     
     // Move .active class one row upwards
     for (let i = 0; i < 4; i++){
         $(`#gpin_${currentRow}_${i}`).addClass("active")
+        storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`))
+        
     }
 
-    currentRow++
+    for (let i = 0; i < 4; i++){
+
+        storedCurrentRowColor[i].parent()[0]
+    
+    }
+    console.log(storedCurrentRowColor)
+
+    
+
+    // // store the colors in current row upon click of submit button
+    // for (let i = 0; i < 4; i++){
+    //     storedCurrentRowColor.push($(`#gpin_${currentRow}_${i}`))
+        
+    // }
+    // console.log($(storedCurrentRowColor)[0])
+
+    
+
+
+
+
+    
     
 
     
@@ -135,14 +155,14 @@ const submitButton = () =>{
 
 $(()=>{
 
-    //reverseAddIdPin()
+    
     reverseGuessRowPin()
     selectPin()
     
     answerPin()
     
 
-        // For class selectors, jQuery uses JavaScript's native 
+    // For class selectors, jQuery uses JavaScript's native 
     // getElementsByClassName() function if the browser supports it.
 
     // To provide id to individual guess-pin
