@@ -123,8 +123,18 @@ const selectPin = () =>{
 }
 
 
+const checkCorrectAnswer = () =>{
+
+    
+}
+
+
 const showGuessResults = () =>{
-    $(".guess-result.active")
+
+
+
+    //$(".guess-result.active").css("background-color", "black")
+    $(".guess-result.active").css("background-color", "red")
 }
 
 
@@ -135,9 +145,13 @@ const showGuessResults = () =>{
 const submitButton = () =>{
 
    $(".submit").on("click", ()=>{
+
+    
+    showGuessResults()
+
     // Remove all .active class
     $(".active").removeClass("active")
-
+    
     
     console.log("current row: ", currentRow)
     currentRow++
@@ -150,7 +164,7 @@ const submitButton = () =>{
     for (let i = 0; i < 4; i++){
         $(`#gpin_${currentRow}_${i}`).addClass("active")
         // add guess-result with class active
-        $(`#gpin_ans_${currentRow-1}`).addClass("active")
+        $(`#gpin_ans_${currentRow}_${i}`).addClass("active")
 
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`))
         
@@ -163,7 +177,7 @@ const submitButton = () =>{
     console.log(storedCurrentRowColor)
 
     
-    showGuessResults()
+    
 
     
 
