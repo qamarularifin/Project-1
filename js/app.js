@@ -53,6 +53,7 @@ let $chosenColor = "";
 let isPicked = true;
 let guessPinArr;
 let guessPinResultArr;
+let guessPinId;
 
 let storedCurrentRowColor = [];
 
@@ -100,6 +101,9 @@ const selectPin = () =>{
 
                 if ($(event.target).hasClass("active")){
                     $(event.target).css("background-color", $chosenColor)
+                    // generate an id based on button pressed
+                    $guessPinId = $(event.target).attr("id")
+                    console.log($guessPinId)
                 
 
                 } 
@@ -124,11 +128,11 @@ const selectPin = () =>{
 }
 
 
-const checkCorrectAnswer = (color) =>{   
+const checkCorrectAnswer = (guessPin) =>{   
     //there is 6 colors. 
     //match the answer-1 to gpin_0_0
-    if ($("#gpin_0_0").css("background-color", colorsToInt[color])){
-        console.log("ok")
+    if ($(guessPin).css("background-color") === $("#answer-1").css("background-color")){
+        console.log("Correct")
     }
     //console.log("color:", $("#gpin_0_0").css("background-color"))
     
@@ -163,7 +167,7 @@ const submitButton = () =>{
 
     
     showGuessResults()
-    checkCorrectAnswer("3")
+    //checkCorrectAnswer(something)
 
     // Remove all .active class
     $(".active").removeClass("active")
