@@ -25,35 +25,35 @@ const colorsToInt = {
 //console.log(colorsToInt["rgb(0,0,255)"])
 
 
-const displayColors = (id, index) =>{
+// const displayColors = (id, index) =>{
 
-    const masterArr = [    
+//     const masterArr = [    
 
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-    ]
-}
-
-
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//         [0,0,0,0],
+//     ]
+// }
 
 
-let originalBackground = "rgb(255, 255, 255)"
-let guessReversedArray = []
 
-let currentRow = 0
-let $chosenColor = ""
+
+let guessReversedArray = [];
+let guessReversedResultArray = [];
+let currentRow = 0;
+let $chosenColor = "";
 let isPicked = true;
 let guessPinArr;
+let guessPinResultArr;
 
-let storedCurrentRowColor = []
+let storedCurrentRowColor = [];
 
 
 
@@ -66,13 +66,22 @@ const answerPin = () =>{
 }
 
 
-
+// reverse the guess-pin
 const reverseGuessRowPin = () =>{
-    // reverse the guess-pin
+    
     for (let i = 9; i >=0; i--){
         guessReversedArray.push($(".guess-row-pin")[i])
     }
     //console.log(guessReversedArray)
+}
+
+// reverse the guess-row-result
+const reverseGuessRowResultPin = () =>{
+    
+    for (let i = 9; i >=0; i--){
+        guessReversedResultArray.push($(".guess-row-result")[i])
+    }
+    //console.log(guessReversedResultArray)
 }
 
 
@@ -112,6 +121,13 @@ const selectPin = () =>{
         })
 
 }
+
+
+const showGuessResults = () =>{
+    $(".guess-result").text("hi")
+}
+
+
 
 
 
@@ -156,6 +172,8 @@ const submitButton = () =>{
     // }
     // console.log($(storedCurrentRowColor)[0])
 
+    showGuessResults()
+
     
 
 })
@@ -168,6 +186,7 @@ $(()=>{
 
     
     reverseGuessRowPin()
+    reverseGuessRowResultPin()
     selectPin()
     
     answerPin()
@@ -178,12 +197,37 @@ $(()=>{
 
     // To provide id to individual guess-pin
     for(let i = 0; i < 10; i++) {
+        
         guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin");
-        //console.log(guessPinArr)
+        guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result")
+        
+        console.log(guessPinResultArr)
         for(let j = 0; j < 4; j++) {
-        $(guessPinArr[j]).attr('id',`gpin_${i}_${j}`);
+            $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)
+            $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}`)
         }
     }
+
+    // To provide id to individual guess-result
+    // for (let i = 0 ; i < 10; i++){
+    //     guessPinResultArr = guessReversedArray[i].getElementsByClassName("guess-result")
+    //     //console.log(guessPinResultArr)
+    //     for (let j = 0; j < 4; j++){
+    //         $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
+    //     }
+    // }
+
+
+
+        // to paste back if doesnt work for individual guess-pin
+    //   // To provide id to individual guess-pin
+    //   for(let i = 0; i < 10; i++) {
+    //     guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin");
+    //     //console.log(guessPinArr)
+    //     for(let j = 0; j < 4; j++) {
+    //     $(guessPinArr[j]).attr('id',`gpin_${i}_${j}`)
+    //     }
+    // }
 
 
 
