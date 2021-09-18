@@ -10,19 +10,20 @@ const colors = [
 
 ]
 
+
 const colorsToInt = {
-    "rgb(255,0,0)" : 1, //red
-    "rgb(0,0,255)" : 2, //blue
-    "rgb(0,128,0)" : 3, //green
-    "rgb(255,255,0)" : 4, //yellow
-    "rgb(255,255,255)" : 5, //white
-    "rgb(0,0,0)" : 6, // black
+    "1": "rgb(255,0,0)",  //red  
+     "2": "rgb(0,0,255)" , //blue
+     "3": "rgb(0,128,0)" , //green
+      "4": "rgb(255,255,0)", //yellow
+      "5": "rgb(255,255,255)", //white
+     "6": "rgb(0,0,0)", // black
 
 }
 
 
 
-//console.log(colorsToInt["rgb(0,0,255)"])
+console.log(colorsToInt["2"])
 
 
 // const displayColors = (id, index) =>{
@@ -123,7 +124,14 @@ const selectPin = () =>{
 }
 
 
-const checkCorrectAnswer = () =>{
+const checkCorrectAnswer = (color) =>{   
+    //there is 6 colors. 
+    //match the answer-1 to gpin_0_0
+    if ($("#gpin_0_0").css("background-color", colorsToInt[color])){
+        console.log("ok")
+    }
+    //console.log("color:", $("#gpin_0_0").css("background-color"))
+    
 
     
 }
@@ -131,7 +139,14 @@ const checkCorrectAnswer = () =>{
 
 const showGuessResults = () =>{
 
+    // if color is correct and position correct
+    // return red
 
+    // if color is correct and position incorrect
+    // return black
+
+    //if color is non-existent
+    //return empty
 
     //$(".guess-result.active").css("background-color", "black")
     $(".guess-result.active").css("background-color", "red")
@@ -148,6 +163,7 @@ const submitButton = () =>{
 
     
     showGuessResults()
+    checkCorrectAnswer("3")
 
     // Remove all .active class
     $(".active").removeClass("active")
@@ -174,7 +190,7 @@ const submitButton = () =>{
     for (let i = 0; i < 4; i++){
         storedCurrentRowColor[i].parent()[0]
     }
-    console.log(storedCurrentRowColor)
+    //console.log(storedCurrentRowColor)
 
     
     
@@ -208,7 +224,7 @@ $(()=>{
         guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin");
         guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result")
         
-        console.log(guessPinResultArr)
+        //console.log(guessPinResultArr)
         for(let j = 0; j < 4; j++) {
             $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)
             $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
