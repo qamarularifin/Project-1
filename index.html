@@ -1,204 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MasterMind</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css" />
     <script
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous">
-    </script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
     <script src="./js/app.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="outer-body">
-        <div class="answer-outer-row">
-            <div class="answer-inner-row">
-                <div class="answer-pin" id="answer-1"></div>
-                <div class="answer-pin" id="answer-2"></div>
-                <div class="answer-pin" id="answer-3"></div>
-                <div class="answer-pin" id="answer-4"></div>
-            </div>
-            <div class="submit">Click to Submit</div>
+      <div class="answer-outer-row">
+        <div class="answer-inner-row">
+          <div class="answer-pin" id="answer-1"></div>
+          <div class="answer-pin" id="answer-2"></div>
+          <div class="answer-pin" id="answer-3"></div>
+          <div class="answer-pin" id="answer-4"></div>
         </div>
+        <div class="submit">Click to Submit</div>
+      </div>
 
       <!-- Number 9 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
         </div>
-
-
-         <!-- Number 8 -->
-         <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
         </div>
+      </div>
 
-
-         <!-- Number 7 -->
-         <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+      <!-- Number 8 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
         </div>
-
-        <!-- Number 6 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
         </div>
+      </div>
 
-
-        <!-- Number 5 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+      <!-- Number 7 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
         </div>
-
-
-
-        <!-- Number 4 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
         </div>
+      </div>
 
-
-
-        <!-- Number 3 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+      <!-- Number 6 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
         </div>
-
-
-        <!-- Number 2 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
         </div>
+      </div>
 
-
-
-        <!-- Number 1 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-                <div class="guess-pin"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+      <!-- Number 5 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
         </div>
-
-
-        <!-- Number 0 -->
-        <div class="outer-guess-row">
-
-            <div class="guess-row-pin">
-                <div class="guess-pin active"></div>
-                <div class="guess-pin active"></div>
-                <div class="guess-pin active"></div>
-                <div class="guess-pin active"></div>
-            </div>
-            <div class="guess-row-result">
-                <div class="guess-result"></div>
-            </div>
-
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
         </div>
+      </div>
 
-
-    <!-- Selection color -->
-        <div class="select-row">
-            <div class="select-pin" style="background-color: red;"></div>
-            <div class="select-pin" style="background-color: blue;"></div>
-            <div class="select-pin" style="background-color: green;"></div>
-            <div class="select-pin" style="background-color: yellow;"></div>
-            <div class="select-pin" style="background-color: white;"></div>
-            <div class="select-pin" style="background-color: black;"></div>
-            
+      <!-- Number 4 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
         </div>
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
+        </div>
+      </div>
+
+      <!-- Number 3 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+        </div>
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
+        </div>
+      </div>
+
+      <!-- Number 2 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+        </div>
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
+        </div>
+      </div>
+
+      <!-- Number 1 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+          <div class="guess-pin"></div>
+        </div>
+        <div class="guess-row-result">
+          <div class="guess-result"></div>
+        </div>
+      </div>
+
+      <!-- Number 0 -->
+      <div class="outer-guess-row">
+        <div class="guess-row-pin">
+          <div class="guess-pin active"></div>
+          <div class="guess-pin active"></div>
+          <div class="guess-pin active"></div>
+          <div class="guess-pin active"></div>
+        </div>
+        <div class="guess-row-result">
+          <div class="guess-result active"></div>
+        </div>
+      </div>
+
+      <!-- Selection color -->
+      <div class="select-row">
+        <div class="select-pin" style="background-color: red"></div>
+        <div class="select-pin" style="background-color: blue"></div>
+        <div class="select-pin" style="background-color: green"></div>
+        <div class="select-pin" style="background-color: yellow"></div>
+        <div class="select-pin" style="background-color: white"></div>
+        <div class="select-pin" style="background-color: black"></div>
+      </div>
     </div>
-    
-    
-</body>
+  </body>
 </html>

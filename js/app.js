@@ -124,7 +124,7 @@ const selectPin = () =>{
 
 
 const showGuessResults = () =>{
-    $(".guess-result").text("hi")
+    $(".guess-result").text(" 2 / 4 ").css("text-align", "center")
 }
 
 
@@ -135,9 +135,6 @@ const showGuessResults = () =>{
 const submitButton = () =>{
 
 
-    
-    
-    
 
    $(".submit").on("click", ()=>{
     // Remove all .active class
@@ -148,9 +145,14 @@ const submitButton = () =>{
     currentRow++
     
     
-    // Move .active class one row upwards and store guess pin colors in array
+    // Add above row with active class and move .active class one row upwards 
+    // and store guess pin colors in array.
+    // Add guess-result with class active
     for (let i = 0; i < 4; i++){
         $(`#gpin_${currentRow}_${i}`).addClass("active")
+        // add guess-result with class active
+        $(`#gpin_ans_${currentRow}`).addClass("active")
+
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`))
         
     }
@@ -195,7 +197,7 @@ $(()=>{
     // For class selectors, jQuery uses JavaScript's native 
     // getElementsByClassName() function if the browser supports it.
 
-    // To provide id to individual guess-pin
+    // To provide id to individual guess-pin and guess-result
     for(let i = 0; i < 10; i++) {
         
         guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin");
@@ -208,30 +210,6 @@ $(()=>{
         }
     }
 
-    // To provide id to individual guess-result
-    // for (let i = 0 ; i < 10; i++){
-    //     guessPinResultArr = guessReversedArray[i].getElementsByClassName("guess-result")
-    //     //console.log(guessPinResultArr)
-    //     for (let j = 0; j < 4; j++){
-    //         $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
-    //     }
-    // }
-
-
-
-        // to paste back if doesnt work for individual guess-pin
-    //   // To provide id to individual guess-pin
-    //   for(let i = 0; i < 10; i++) {
-    //     guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin");
-    //     //console.log(guessPinArr)
-    //     for(let j = 0; j < 4; j++) {
-    //     $(guessPinArr[j]).attr('id',`gpin_${i}_${j}`)
-    //     }
-    // }
-
-
-
-    
     submitButton()
 
 
