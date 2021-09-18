@@ -10,6 +10,20 @@ const colors = [
 
 ]
 
+const colorsToInt = {
+    "rgb(255,0,0)" : 1, //red
+    "rgb(0,0,255)" : 2, //blue
+    "rgb(0,128,0)" : 3, //green
+    "rgb(255,255,0)" : 4, //yellow
+    "rgb(255,255,255)" : 5, //white
+    "rgb(0,0,0)" : 6, // black
+
+}
+
+
+
+//console.log(colorsToInt["rgb(0,0,255)"])
+
 
 const displayColors = (id, index) =>{
 
