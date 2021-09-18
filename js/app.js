@@ -124,7 +124,7 @@ const selectPin = () =>{
 
 
 const showGuessResults = () =>{
-    $(".guess-result.active").text(" 2 / 4 ").css("text-align", "center")
+    $(".guess-result.active")
 }
 
 
@@ -197,7 +197,7 @@ $(()=>{
         console.log(guessPinResultArr)
         for(let j = 0; j < 4; j++) {
             $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)
-            $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}`)
+            $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
         }
     }
 
