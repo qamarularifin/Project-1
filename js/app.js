@@ -124,7 +124,7 @@ const selectPin = () =>{
 
 
 const showGuessResults = () =>{
-    $(".guess-result").text(" 2 / 4 ").css("text-align", "center")
+    $(".guess-result.active").text(" 2 / 4 ").css("text-align", "center")
 }
 
 
@@ -134,15 +134,14 @@ const showGuessResults = () =>{
 
 const submitButton = () =>{
 
-
-
    $(".submit").on("click", ()=>{
     // Remove all .active class
     $(".active").removeClass("active")
 
-
+    
     console.log("current row: ", currentRow)
     currentRow++
+    
     
     
     // Add above row with active class and move .active class one row upwards 
@@ -151,7 +150,7 @@ const submitButton = () =>{
     for (let i = 0; i < 4; i++){
         $(`#gpin_${currentRow}_${i}`).addClass("active")
         // add guess-result with class active
-        $(`#gpin_ans_${currentRow}`).addClass("active")
+        $(`#gpin_ans_${currentRow-1}`).addClass("active")
 
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`))
         
@@ -159,22 +158,14 @@ const submitButton = () =>{
 
     // store the colors in current row upon click of submit button
     for (let i = 0; i < 4; i++){
-
         storedCurrentRowColor[i].parent()[0]
-    
     }
     console.log(storedCurrentRowColor)
 
     
-
-    // // store the colors in current row upon click of submit button
-    // for (let i = 0; i < 4; i++){
-    //     storedCurrentRowColor.push($(`#gpin_${currentRow}_${i}`))
-        
-    // }
-    // console.log($(storedCurrentRowColor)[0])
-
     showGuessResults()
+
+    
 
     
 
