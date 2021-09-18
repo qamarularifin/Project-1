@@ -57,6 +57,7 @@ let $guessPinId;
 let $sliceGuessPinId;
 
 let storedCurrentRowColor = [];
+let answerPinArr = [];
 
 
 
@@ -67,6 +68,9 @@ const answerPin = () =>{
     $("#answer-3").css("background-color", colors[Math.floor(Math.random() * colors.length)])
     $("#answer-4").css("background-color", colors[Math.floor(Math.random() * colors.length)])
 }
+
+
+
 
 
 // reverse the guess-pin
@@ -132,7 +136,24 @@ const selectPin = () =>{
 
 const checkCorrectAnswer = (guessPin) =>{   
     //there is 6 colors. 
-    //check correct position
+    
+    //WORK ON THIS ONEEEEE!!!!!!!!!!!!
+    // check if all guess pins exists from the answer pins
+    // use .includes with an array. Make answer pins as an array
+    if (answerPinArr.includes($(`#${guessPin}_${0}`).css("background-color"))
+        || answerPinArr.includes($(`#${guessPin}_${1}`).css("background-color"))
+        || answerPinArr.includes($(`#${guessPin}_${2}`).css("background-color"))
+        || answerPinArr.includes($(`#${guessPin}_${3}`).css("background-color"))
+    
+    )
+        
+        {
+        console.log("yahoo")
+    }
+    
+    
+    
+    //check all positions are correct 
     if ($(`#${guessPin}_${0}`).css("background-color") === $("#answer-1").css("background-color")
         && $(`#${guessPin}_${1}`).css("background-color") === $("#answer-2").css("background-color")
         && $(`#${guessPin}_${2}`).css("background-color") === $("#answer-3").css("background-color")
@@ -141,13 +162,38 @@ const checkCorrectAnswer = (guessPin) =>{
     ){
         console.log("All correct position")
         $(".guess-result.active").css("background-color", "red")
-    } else{
-        console.log("wrong")
-    }
+    
+    //check right color, wrong position
+    } 
 
     
     
 }
+
+// paste back below if doesnt work
+// const checkCorrectAnswer = (guessPin) =>{   
+//     //there is 6 colors. 
+//     //check all positions are correct 
+//     if ($(`#${guessPin}_${0}`).css("background-color") === $("#answer-1").css("background-color")
+//         && $(`#${guessPin}_${1}`).css("background-color") === $("#answer-2").css("background-color")
+//         && $(`#${guessPin}_${2}`).css("background-color") === $("#answer-3").css("background-color")
+//         && $(`#${guessPin}_${3}`).css("background-color") === $("#answer-4").css("background-color")
+    
+//     ){
+//         console.log("All correct position")
+//         $(".guess-result.active").css("background-color", "red")
+    
+//     //check right color, wrong position
+//     } else if ($(`#${guessPin}_${0}`).css("background-color") === $("#answer-1").css("background-color")
+//         && $(`#${guessPin}_${1}`).css("background-color") === $("#answer-2").css("background-color")
+//         && $(`#${guessPin}_${2}`).css("background-color") === $("#answer-3").css("background-color")
+//         && $(`#${guessPin}_${3}`).css("background-color") === $("#answer-4").css("background-color"))
+        
+//         {
+//         console.log("wrong")
+//     } 
+    
+// }
 
 
 const showGuessResults = () =>{
@@ -220,7 +266,15 @@ $(()=>{
     selectPin()
     
     answerPin()
+
+
+    // for loop to push answer-pin to array
+    for (let i = 1; i <=4; i++){
+        answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
+    }
     
+    
+    //console.log("arrayzz:", answerPinArr)
 
     // For class selectors, jQuery uses JavaScript's native 
     // getElementsByClassName() function if the browser supports it.
