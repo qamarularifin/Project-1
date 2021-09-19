@@ -11,19 +11,64 @@ const colors = [
 ]
 
 
-const colorsToInt = {
-    "1": "rgb(255,0,0)",  //red  
-     "2": "rgb(0,0,255)" , //blue
-     "3": "rgb(0,128,0)" , //green
-      "4": "rgb(255,255,0)", //yellow
-      "5": "rgb(255,255,255)", //white
-     "6": "rgb(0,0,0)", // black
 
+
+// const colorsToInt = {
+//     "1": "rgb(255,0,0)",  //red  
+//      "2": "rgb(0,0,255)" , //blue
+//      "3": "rgb(0,128,0)" , //green
+//       "4": "rgb(255,255,0)", //yellow
+//       "5": "rgb(255,255,255)", //white
+//      "6": "rgb(0,0,0)", // black
+
+// }
+
+// not needed
+// const colorsToIntObj = {
+//     "rgb(255,0,0)" : 1,  //red  
+//     "rgb(0,0,255)" :  2, //blue
+//     "rgb(0,128,0)" :  3, //green
+//     "rgb(255,255,0)" : 4, //yellow
+//     "rgb(255,255,255)" : 5 , //white
+//     "rgb(0,0,0)" : 6, // black
+
+// }
+
+
+
+// pass in answerPinArr or storedCurrentRowColor into array
+const colorsToInt = (colorArr) =>{
+
+    let newArr = []
+    for (let i = 0; i < colorArr.length; i++){
+
+        if (colorArr[i] === "rgb(255, 0, 0)"){
+            newArr.push(1)
+        }
+        if (colorArr[i] === "rgb(0, 0, 255)"){
+            newArr.push(2)
+        }
+        if (colorArr[i] === "rgb(0, 128, 0)"){
+            newArr.push(3)
+        }
+        if (colorArr[i] === "rgb(255, 255, 0)"){
+            newArr.push(4)
+        }
+        if (colorArr[i] === "rgb(255, 255, 255)"){
+            newArr.push(5)
+        }
+        if (colorArr[i] === "rgb(0, 0, 0)"){
+            newArr.push(6)
+        }
+
+    }
+    
+
+    console.log(newArr)
 }
 
 
 
-console.log(colorsToInt["2"])
 
 
 // const displayColors = (id, index) =>{
@@ -262,12 +307,11 @@ const submitButton = () =>{
     }
   
      console.log("my array: ", storedCurrentRowColor)
+     colorsToInt(storedCurrentRowColor)
 
 
 })
 }
-
-
 
 
 $(()=>{
@@ -285,6 +329,9 @@ $(()=>{
         answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
     }
     console.log("answer array: ", answerPinArr)
+
+    //optional to convert colors to Int
+    colorsToInt(answerPinArr)
 
 
 
