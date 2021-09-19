@@ -140,19 +140,7 @@ const checkCorrectAnswer = (guessPin) =>{
     //WORK ON THIS ONEEEEE!!!!!!!!!!!!
     // check if all guess pins exists from the answer pins
     // use .includes with an array. Make answer pins as an array
-    if (answerPinArr.includes($(`#${guessPin}_${0}`).css("background-color"))
-        || answerPinArr.includes($(`#${guessPin}_${1}`).css("background-color"))
-        || answerPinArr.includes($(`#${guessPin}_${2}`).css("background-color"))
-        || answerPinArr.includes($(`#${guessPin}_${3}`).css("background-color"))
-    
-    )
-        
-        {
-        console.log("yahoo")
-    }
-    
-    
-    
+
     //check all positions are correct 
     if ($(`#${guessPin}_${0}`).css("background-color") === $("#answer-1").css("background-color")
         && $(`#${guessPin}_${1}`).css("background-color") === $("#answer-2").css("background-color")
@@ -163,8 +151,35 @@ const checkCorrectAnswer = (guessPin) =>{
         console.log("All correct position")
         $(".guess-result.active").css("background-color", "red")
     
-    //check right color, wrong position
     } 
+
+    //check 1st col color correct, wrong position or non existent
+    if (answerPinArr.includes($(`#${guessPin}_${0}`).css("background-color"))){
+        
+        
+    }
+        
+        {
+        console.log("yahoo")
+    }
+
+
+    // to add back if not working
+    // //check right color, wrong position
+    // if (answerPinArr.includes($(`#${guessPin}_${0}`).css("background-color"))
+    //     || answerPinArr.includes($(`#${guessPin}_${1}`).css("background-color"))
+    //     || answerPinArr.includes($(`#${guessPin}_${2}`).css("background-color"))
+    //     || answerPinArr.includes($(`#${guessPin}_${3}`).css("background-color"))
+    
+    // )
+        
+    //     {
+    //     console.log("yahoo")
+    // }
+    
+    
+    
+    
 
     
     
@@ -241,15 +256,12 @@ const submitButton = () =>{
         // add guess-result with class active
         $(`#gpin_ans_${currentRow}_${i}`).addClass("active")
 
-        storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`))
+        // get guess current row colors pushed to array "storedCurrentRowColor"
+        storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))
         
     }
-
-    // store the colors in current row upon click of submit button
-    for (let i = 0; i < 4; i++){
-        storedCurrentRowColor[i].parent()[0]
-    }
-    //console.log(storedCurrentRowColor)
+  
+     console.log("my array: ", storedCurrentRowColor)
 
 
 })
@@ -272,9 +284,12 @@ $(()=>{
     for (let i = 1; i <=4; i++){
         answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
     }
-    
-    
-    //console.log("arrayzz:", answerPinArr)
+    console.log("answer array: ", answerPinArr)
+
+
+
+
+
 
     // For class selectors, jQuery uses JavaScript's native 
     // getElementsByClassName() function if the browser supports it.
