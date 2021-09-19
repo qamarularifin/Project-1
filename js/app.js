@@ -12,7 +12,7 @@ const colors = [
 
 
 
-
+// not needed
 // const colorsToInt = {
 //     "1": "rgb(255,0,0)",  //red  
 //      "2": "rgb(0,0,255)" , //blue
@@ -63,14 +63,13 @@ const colorsToInt = (colorArr) =>{
 
     }
     
-
-    console.log(newArr)
+    return newArr
 }
 
 
 
 
-
+// not needed
 // const displayColors = (id, index) =>{
 
 //     const masterArr = [    
@@ -103,6 +102,11 @@ let $sliceGuessPinId;
 
 let storedCurrentRowColor = [];
 let answerPinArr = [];
+
+//converted colors to int array
+
+let convAnswerPinArr;
+let convGuessPinArr;
 
 
 
@@ -170,12 +174,9 @@ const selectPin = () =>{
                     
                 //}
                 
-
-            
             })
 
         })
-
 }
 
 
@@ -223,10 +224,7 @@ const checkCorrectAnswer = (guessPin) =>{
     // }
     
     
-    
-    
-
-    
+ 
     
 }
 
@@ -255,7 +253,7 @@ const checkCorrectAnswer = (guessPin) =>{
     
 // }
 
-
+// not needed
 const showGuessResults = () =>{
 
     // if color is correct and position correct
@@ -307,7 +305,9 @@ const submitButton = () =>{
     }
   
      console.log("my array: ", storedCurrentRowColor)
-     colorsToInt(storedCurrentRowColor)
+     // converted colors of guess-pin into integers
+     convGuessPinArr = colorsToInt(storedCurrentRowColor)
+     console.log(convGuessPinArr)
 
 
 })
@@ -330,8 +330,9 @@ $(()=>{
     }
     console.log("answer array: ", answerPinArr)
 
-    //optional to convert colors to Int
-    colorsToInt(answerPinArr)
+    // converted colors of anwer-pin to integers
+    convAnswerPinArr = colorsToInt(answerPinArr)
+    console.log(convAnswerPinArr)
 
 
 
