@@ -5,7 +5,7 @@ const colors = [
     "blue",
     "green",
     "yellow",
-    "white",
+    "orange",
     "black",
 
 ]
@@ -18,7 +18,7 @@ const colors = [
 //      "2": "rgb(0,0,255)" , //blue
 //      "3": "rgb(0,128,0)" , //green
 //       "4": "rgb(255,255,0)", //yellow
-//       "5": "rgb(255,255,255)", //white
+//       "5": "rgb(255, 165, 0)", //orange
 //      "6": "rgb(0,0,0)", // black
 
 // }
@@ -29,7 +29,7 @@ const colors = [
 //     "rgb(0,0,255)" :  2, //blue
 //     "rgb(0,128,0)" :  3, //green
 //     "rgb(255,255,0)" : 4, //yellow
-//     "rgb(255,255,255)" : 5 , //white
+//     "rgb(255, 165, 0)" : 5 , //orange
 //     "rgb(0,0,0)" : 6, // black
 
 // }
@@ -49,17 +49,13 @@ const colors = [
 //     [-2,-2,-2,-2],
 // ]
 
-const overallGuessArr = [    
-
-    [],[],[],[],[],[],[],[],[],[],
-    
-]
+const overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
 
 
 const displayOverallGuess = (pos, color) =>{
     //console.log(pos, color)
-    let splitPos = pos.split("_")   // ["gpin", "0", "0"]
-    //console.log(splitPos)  // 
+    let splitPos = pos.split("_")   
+    //console.log(splitPos)  // ["gpin", "0", "0"]
     let a = splitPos[1]  // 0
     let b = splitPos[2]  // 0
 
@@ -71,7 +67,7 @@ const displayOverallGuess = (pos, color) =>{
 
 
 
-// pass in storedCurrentRowColor into array
+// pass in $chosenColor into array
 const colorsToInt = (color) =>{
 
         if (color === "rgb(255, 0, 0)"){
@@ -86,7 +82,7 @@ const colorsToInt = (color) =>{
         if (color === "rgb(255, 255, 0)"){
             return 4
         }
-        if (color === "rgb(255, 255, 255)"){
+        if (color === "rgb(255, 165, 0)"){
             return 5
         }
         if (color === "rgb(0, 0, 0)"){
@@ -116,7 +112,7 @@ const colorsAnsToInt = (color) =>{
             if (color[i] === "rgb(255, 255, 0)"){
                 newArr.push(4)
             }
-            if (color[i] === "rgb(255, 255, 255)"){
+            if (color[i] === "rgb(255, 165, 0)"){
                 newArr.push(5)
             }
             if (color[i] === "rgb(0, 0, 0)"){
@@ -208,17 +204,18 @@ const selectPin = () =>{
                     
                     
                 } 
-                // else{
+                // might not needed
+            //     else{
 
-                  ///////////////////////////////////////////////////
-                    //   Click again to remove the color
+            //       /////////////////////////////////////////////////
+            //           //Click again to remove the color
             //         $(".guess-pin.active").on("click", (event)=>{
             //             $(event.target).css("background-color", "white")
                         
             // })
-                //////////////////////////////////////////////////
+            //     ////////////////////////////////////////////////
                     
-                //}
+            //     }
                 
             })
 
@@ -298,6 +295,8 @@ const checkCorrectAnswer = (guessPin) =>{
 // }
 
 
+
+
 // not needed
 const showGuessResults = () =>{
 
@@ -313,6 +312,21 @@ const showGuessResults = () =>{
     //$(".guess-result.active").css("background-color", "black")
     $(".guess-result.active").css("background-color", "red")
 }
+
+        // check one row at a time
+    const checkAllCorrect = (currentRow) =>{
+        for (let i = 0; i < 4; i++){
+            if (overallGuessArr[currentRow][i] === convAnswerPinArr[i]){
+                console.log("ok")
+                $(".guess-result.active").css("background-color", "red")
+            } else{
+                console.log("nope")
+            }
+
+        }
+        
+    }
+
 
 
    
@@ -330,6 +344,8 @@ const submitButton = () =>{
     $(".active").removeClass("active")
     
     console.log("Guess pin :", overallGuessArr[currentRow])
+
+    
     
     console.log("current row: ", currentRow)
     currentRow++
@@ -342,13 +358,20 @@ const submitButton = () =>{
     for (let i = 0; i < 4; i++){
         $(`#gpin_${currentRow}_${i}`).addClass("active")
         // add guess-result with class active
-        $(`#gpin_ans_${currentRow}_${i}`).addClass("active")
+        $(`#gpin_ans_${currentRow-1}_${i}`).addClass("active")
 
         // get guess current row colors pushed to array "storedCurrentRowColor"
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
         
         
     }
+
+    // check all answers here
+    checkAllCorrect(currentRow - 1)
+    
+ 
+
+
       // show my color array in rgb format
      //console.log("my color array: ", storedCurrentRowColor)
       // converted colors of guess-pin into integers
@@ -384,6 +407,14 @@ const submitButton = () =>{
     // }
 
     // getGrade()
+
+
+    
+
+
+        
+    
+
      
 
 
@@ -417,8 +448,8 @@ $(()=>{
     // To provide id to individual guess-pin and guess-result
     for(let i = 0; i < 10; i++) {
         
-        guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin");
-        guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result")
+        guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin"); // get individual guess pin
+        guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result") // get individual guess pin result
         
         //console.log(guessPinArr)
         for(let j = 0; j < 4; j++) {
@@ -427,7 +458,17 @@ $(()=>{
         }
     }
 
+
+
+
+
+
+
+
     submitButton()
+
+
+    
 
 
 });
