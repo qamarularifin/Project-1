@@ -34,58 +34,92 @@ const colors = [
 
 // }
 
+const overallGuessArr = [    
 
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+    [-2,-2,-2,-2],
+]
 
-// pass in answerPinArr or storedCurrentRowColor into array
-const colorsToInt = (colorArr) =>{
+//console.log(overallGuessArr)
 
-    let newArr = []
-    for (let i = 0; i < colorArr.length; i++){
+const displayOverallGuess = (pos, color) =>{
+    //console.log(pos, color)
+    let splitPos = pos.split("_")   // ["gpin", "0", "0"]
+    //console.log(splitPos)  // 
+    let a = splitPos[1]  // 0
+    let b = splitPos[2]  // 0
 
-        if (colorArr[i] === "rgb(255, 0, 0)"){
-            newArr.push(1)
-        }
-        if (colorArr[i] === "rgb(0, 0, 255)"){
-            newArr.push(2)
-        }
-        if (colorArr[i] === "rgb(0, 128, 0)"){
-            newArr.push(3)
-        }
-        if (colorArr[i] === "rgb(255, 255, 0)"){
-            newArr.push(4)
-        }
-        if (colorArr[i] === "rgb(255, 255, 255)"){
-            newArr.push(5)
-        }
-        if (colorArr[i] === "rgb(0, 0, 0)"){
-            newArr.push(6)
-        }
-
-    }
+    overallGuessArr[a][b] = colorsToInt(color)
+    //console.log(overallGuessArr)
     
-    return newArr
 }
 
 
 
 
-// not needed
-// const displayColors = (id, index) =>{
+// pass in storedCurrentRowColor into array
+const colorsToInt = (color) =>{
 
-//     const masterArr = [    
+        if (color === "rgb(255, 0, 0)"){
+            return 1
+        }
+        if (color === "rgb(0, 0, 255)"){
+            return 2
+        }
+        if (color === "rgb(0, 128, 0)"){
+            return 3
+        }
+        if (color === "rgb(255, 255, 0)"){
+            return 4
+        }
+        if (color === "rgb(255, 255, 255)"){
+            return 5
+        }
+        if (color === "rgb(0, 0, 0)"){
+            return 6
+        }
 
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//         [0,0,0,0],
-//     ]
-// }
+}
+
+
+
+
+// pass in answerPinArr into array
+const colorsAnsToInt = (color) =>{
+
+    let newArr = []
+    
+        for (let i = 0; i < color.length; i++){
+            if (color[i] === "rgb(255, 0, 0)"){
+                newArr.push(1)
+            }
+            if (color[i] === "rgb(0, 0, 255)"){
+                newArr.push(2)
+            }
+            if (color[i] === "rgb(0, 128, 0)"){
+                newArr.push(3)
+            }
+            if (color[i] === "rgb(255, 255, 0)"){
+                newArr.push(4)
+            }
+            if (color[i] === "rgb(255, 255, 255)"){
+                newArr.push(5)
+            }
+            if (color[i] === "rgb(0, 0, 0)"){
+                newArr.push(6)
+            }
+        }
+        return newArr
+
+}
 
 
 
@@ -153,14 +187,20 @@ const selectPin = () =>{
 
             $(".guess-pin.active").on("click", (event)=>{
 
+                
+
                 if ($(event.target).hasClass("active")){
                     $(event.target).css("background-color", $chosenColor)
                     // generate an id based on button pressed
-                    $guessPinId = $(event.target).attr("id")
+                    let $guessPinId = $(event.target).attr("id")    //here issue is duplicatess
+                    // slice to get gpin_0 only
                     $sliceGuessPinId = $guessPinId.slice(0, 6)
-                    console.log($sliceGuessPinId)
-                
-
+                    //console.log($sliceGuessPinId) // will print gpin_0
+                    //console.log($guessPinId)
+                    
+                    displayOverallGuess($guessPinId, $chosenColor)
+                    
+                    
                 } 
                 // else{
 
@@ -198,7 +238,8 @@ const checkCorrectAnswer = (guessPin) =>{
         $(".guess-result.active").css("background-color", "red")
     
     } 
-
+    
+    // WORK ON THIS!!!!!
     //check 1st col color correct, wrong position or non existent
     if (answerPinArr.includes($(`#${guessPin}_${0}`).css("background-color"))){
         
@@ -222,9 +263,6 @@ const checkCorrectAnswer = (guessPin) =>{
     //     {
     //     console.log("yahoo")
     // }
-    
-    
- 
     
 }
 
@@ -253,6 +291,7 @@ const checkCorrectAnswer = (guessPin) =>{
     
 // }
 
+
 // not needed
 const showGuessResults = () =>{
 
@@ -270,8 +309,7 @@ const showGuessResults = () =>{
 }
 
 
-
-
+   
 
 
 const submitButton = () =>{
@@ -285,6 +323,7 @@ const submitButton = () =>{
     // Remove all .active class
     $(".active").removeClass("active")
     
+    console.log(overallGuessArr[currentRow])
     
     console.log("current row: ", currentRow)
     currentRow++
@@ -300,14 +339,45 @@ const submitButton = () =>{
         $(`#gpin_ans_${currentRow}_${i}`).addClass("active")
 
         // get guess current row colors pushed to array "storedCurrentRowColor"
-        storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))
+        storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
+        
         
     }
   
-     console.log("my array: ", storedCurrentRowColor)
-     // converted colors of guess-pin into integers
+     console.log("my color array: ", storedCurrentRowColor)
+      // converted colors of guess-pin into integers
+     
      convGuessPinArr = colorsToInt(storedCurrentRowColor)
-     console.log(convGuessPinArr)
+     console.log("Guess pin: ", convGuessPinArr)
+     
+
+
+    // // TO WORK ON!!!!!!!!!!!!!!AND REFACTORRRR
+    //  // black pin check
+    //  const getGrade = () =>{
+    //     let gradRay = []
+    //     let aRay = []
+    //     for (let i = 0; i < 4; i++){
+    //         aRay.push(convAnswerPinArr[i])
+    //     }
+    //     //console.log(aRay)
+
+    //     for (let i = 0; i < 4; i++){
+    //         if(convGuessPinArr[i] === aRay[i]){
+    //             gradRay.push(1);
+    //             aRay[i] = -1
+    //             convGuessPinArr[i] = -2
+    //         }
+    //     }
+    //     console.log(aRay)
+    //     console.log(convGuessPinArr)
+    //     console.log(gradRay)
+
+    //     return gradRay
+    // }
+
+    // getGrade()
+     
 
 
 })
@@ -328,16 +398,11 @@ $(()=>{
     for (let i = 1; i <=4; i++){
         answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
     }
-    console.log("answer array: ", answerPinArr)
+    console.log("ans color array: ", answerPinArr)
 
-    // converted colors of anwer-pin to integers
-    convAnswerPinArr = colorsToInt(answerPinArr)
-    console.log(convAnswerPinArr)
-
-
-
-
-
+    // converted colors of answer-pin to integers
+    convAnswerPinArr = colorsAnsToInt(answerPinArr)
+    console.log("Answer pin: ", convAnswerPinArr)
 
     // For class selectors, jQuery uses JavaScript's native 
     // getElementsByClassName() function if the browser supports it.
@@ -348,7 +413,7 @@ $(()=>{
         guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin");
         guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result")
         
-        //console.log(guessPinResultArr)
+        //console.log(guessPinArr)
         for(let j = 0; j < 4; j++) {
             $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)
             $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
