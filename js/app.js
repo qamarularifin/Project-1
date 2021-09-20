@@ -34,21 +34,27 @@ const colors = [
 
 // }
 
+// not needed
+// const overallGuessArr = [    
+
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+//     [-2,-2,-2,-2],
+// ]
+
 const overallGuessArr = [    
 
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
-    [-2,-2,-2,-2],
+    [],[],[],[],[],[],[],[],[],[],
+    
 ]
 
-//console.log(overallGuessArr)
 
 const displayOverallGuess = (pos, color) =>{
     //console.log(pos, color)
@@ -194,7 +200,7 @@ const selectPin = () =>{
                     // generate an id based on button pressed
                     let $guessPinId = $(event.target).attr("id")    //here issue is duplicatess
                     // slice to get gpin_0 only
-                    $sliceGuessPinId = $guessPinId.slice(0, 6)
+                    $sliceGuessPinId = $guessPinId.slice(0, 6) // this is for old method of checking without integers
                     //console.log($sliceGuessPinId) // will print gpin_0
                     //console.log($guessPinId)
                     
@@ -316,14 +322,14 @@ const submitButton = () =>{
 
    $(".submit").on("click", ()=>{
 
-    
+    // old method of checking answer
     //showGuessResults()
-    checkCorrectAnswer($sliceGuessPinId)
+    //checkCorrectAnswer($sliceGuessPinId)
 
     // Remove all .active class
     $(".active").removeClass("active")
     
-    console.log(overallGuessArr[currentRow])
+    console.log("Guess pin :", overallGuessArr[currentRow])
     
     console.log("current row: ", currentRow)
     currentRow++
@@ -343,12 +349,13 @@ const submitButton = () =>{
         
         
     }
-  
-     console.log("my color array: ", storedCurrentRowColor)
+      // show my color array in rgb format
+     //console.log("my color array: ", storedCurrentRowColor)
       // converted colors of guess-pin into integers
-     
-     convGuessPinArr = colorsToInt(storedCurrentRowColor)
-     console.log("Guess pin: ", convGuessPinArr)
+    
+    // might not needed
+    //  convGuessPinArr = colorsToInt(storedCurrentRowColor)
+    //  console.log("Guess pin: ", convGuessPinArr)
      
 
 
@@ -398,7 +405,7 @@ $(()=>{
     for (let i = 1; i <=4; i++){
         answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
     }
-    console.log("ans color array: ", answerPinArr)
+    //console.log("ans color array: ", answerPinArr)
 
     // converted colors of answer-pin to integers
     convAnswerPinArr = colorsAnsToInt(answerPinArr)
