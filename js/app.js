@@ -313,18 +313,40 @@ const showGuessResults = () =>{
     $(".guess-result.active").css("background-color", "red")
 }
 
-        // check one row at a time
-    const checkAllCorrect = (currentRow) =>{
-        for (let i = 0; i < 4; i++){
-            if (overallGuessArr[currentRow][i] === convAnswerPinArr[i]){
-                console.log("ok")
+    //     // check one row at a time
+    // const checkAllCorrect = (currentRow) =>{
+    //     for (let i = 0; i < 4; i++){
+    //         if (overallGuessArr[currentRow][i] === convAnswerPinArr[i]){
+    //             console.log("ok")
+    //             $(`#gpin_ans_${currentRow}_0`).css("background-color", "red")
+    //         } else{
+    //             console.log("nope")
+    //         }
+
+    //     }
+        
+    // }
+    
+    // guesses is an array from overallGuessArray
+    const checkOverallAns = (guesses) =>{
+        const results = []
+        const dupCheck = []
+
+        guesses.forEach((guess, index) =>{
+            if(convAnswerPinArr[index] === guess){
+                results.push("full")
+                dupCheck.push(guess)
                 $(".guess-result.active").css("background-color", "red")
-            } else{
-                console.log("nope")
             }
 
-        }
-        
+        })
+        guesses.forEach((guess) =>{
+            if(!dupCheck.includes(guess) && convAnswerPinArr.includes(guess)){
+                results.push("half")
+                $(".guess-result.active").css("background-color", "gray")
+            }
+        })
+        return results
     }
 
 
@@ -367,7 +389,8 @@ const submitButton = () =>{
     }
 
     // check all answers here
-    checkAllCorrect(currentRow - 1)
+    //checkAllCorrect(currentRow - 1)
+    console.log(checkOverallAns(overallGuessArr[currentRow - 1]))
     
  
 
