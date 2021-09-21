@@ -34,20 +34,7 @@ const colors = [
 
 // }
 
-// not needed
-// const overallGuessArr = [    
 
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-//     [-2,-2,-2,-2],
-// ]
 
 const overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
 
@@ -297,21 +284,6 @@ const checkCorrectAnswer = (guessPin) =>{
 
 
 
-// not needed
-const showGuessResults = () =>{
-
-    // if color is correct and position correct
-    // return red
-
-    // if color is correct and position incorrect
-    // return black
-
-    //if color is non-existent
-    //return empty
-
-    //$(".guess-result.active").css("background-color", "black")
-    $(".guess-result.active").css("background-color", "red")
-}
 
     //     // check one row at a time
     // const checkAllCorrect = (currentRow) =>{
@@ -327,18 +299,29 @@ const showGuessResults = () =>{
         
     // }
     
-    // guesses is an array from overallGuessArray
+    // guesses is an array from overallGuessArr ===>   checkOverallAns(overallGuessArr[currentRow-1])
     const checkOverallAns = (guesses) =>{
-        const results = []
-        const dupCheck = []
+        let results = []  //gradRay
+        let dupAnsCheck = []  //aRay
+        let extraAnsArr = []  // pop into here from dupAnsCheck
+
+        convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
+
+        //not needed
+        // for (let i = 0; i < 4; i++){
+        //     dupAnsCheck.push(convAnswerPinArr[i])
+        // }
 
         guesses.forEach((guess, index) =>{
-            if(convAnswerPinArr[index] === guess){
-                results.push("exact")
-                dupCheck.push(guess)
-
+            
+            if(dupAnsCheck[index] === guess){  // if matches push 1
+                
+                dupAnsCheck[index] = -1   // change the value to -1 to that position in dupAnsCheck
+                guesses[index] = -2                 // change the value to -2 to that position in guess
+                results.push(1)
+                
                 for (let i = 0; i < 4; i++){
-                    if (results[i] === "exact"){
+                    if (results[i] === 1){
                         $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
                     } 
                     
@@ -346,25 +329,83 @@ const showGuessResults = () =>{
                 
             }
 
-        })
-        guesses.forEach((guess) =>{
-            if(!dupCheck.includes(guess) && convAnswerPinArr.includes(guess)){
-                results.push("semi")
 
-                for (let i = 0; i < 4; i++){
-                    if (results[i] === "semi"){
-                        $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
-                    } 
+        })
+        guesses.forEach((guess, index) =>{
+            // only if guess is not -1 or -2, execute below code block
+            // if (guess > 0 && dupAnsCheck[index] > 0){}
+
+                if(dupAnsCheck.includes(guess)){
+                    results.push(-1)
+                    
+    
+                    for (let i = 0; i < 4; i++){
+                        if (results[i] === -1){
+                            $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
+                        } 
+                        
+                    }
                     
                 }
-                
+
             }
-        })
-        console.log("dupCheck :", dupCheck)
+           
+        )
+        
+        console.log("dupAnsCheck", dupAnsCheck)
+        console.log("overallGuessArr", guesses)
+        console.log("results", results)
+        console.log("extraAnsArr", extraAnsArr)
         return results
     }
 
   
+//=============checkOverallAns codes (org)===================//
+
+    // guesses is an array from overallGuessArray
+    // const checkOverallAns = (guesses) =>{
+    //     const results = []
+    //     const dupCheck = []
+
+    //     guesses.forEach((guess, index) =>{
+            
+    //         if(convAnswerPinArr[index] === guess){
+    //             results.push("exact")
+    //             dupCheck.push(guess)
+                
+
+    //             for (let i = 0; i < 4; i++){
+    //                 if (results[i] === "exact"){
+    //                     $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
+    //                 } 
+                    
+    //             }
+                
+    //         }
+
+    //     })
+    //     guesses.forEach((guess) =>{
+    //         if(!dupCheck.includes(guess) && convAnswerPinArr.includes(guess)){
+    //             results.push("semi")
+
+    //             for (let i = 0; i < 4; i++){
+    //                 if (results[i] === "semi"){
+    //                     $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
+    //                 } 
+                    
+    //             }
+                
+    //         }
+    //     })
+    //     console.log("dupCheck :", dupCheck)
+    //     return results
+    // }
+
+//========================================//
+
+
+
+
 const submitButton = () =>{
 
    $(".submit").on("click", ()=>{
@@ -401,7 +442,7 @@ const submitButton = () =>{
 
     // check all answers here
     //checkAllCorrect(currentRow - 1)
-    console.log(checkOverallAns(overallGuessArr[currentRow-1]))
+    checkOverallAns(overallGuessArr[currentRow-1])
     
  
 
