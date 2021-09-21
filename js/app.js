@@ -263,53 +263,163 @@ const checkCorrectAnswer = (guessPin) =>{
 
         convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
 
-
-        guesses.forEach((guess, index) =>{
+        ///////////////////////////
+        // guesses.forEach((guess, index) =>{
             
-            if(dupAnsCheck[index] === guess){  // if matches push 1
+        //     if(guess === dupAnsCheck[index]){  // if matches push 1
                 
-                dupAnsCheck[index] = -1   // change the value to -1 to that position in dupAnsCheck
-                guesses[index] = -2                 // change the value to -2 to that position in guess
-                results.push(1)
+        //         dupAnsCheck[index] = -1   // change the value to -1 to that position in dupAnsCheck
+        //         guesses[index] = -2                 // change the value to -2 to that position in guess
+        //         results.push(1)
                 
+        //         for (let i = 0; i < 4; i++){
+        //             if (results[i] === 1){
+        //                 $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
+        //             } 
+                    
+        //         }
+                
+        //     }  
+            
+
+        // })
+        ///////////////////////////////
+
+        // Red pins
+            for(let i = 0; i < 4; i++) {
+                if(guesses[i] === dupAnsCheck[i]) {
+                results.push(1);
+                dupAnsCheck[i] = -1;
+                guesses[i] = -2;
+
                 for (let i = 0; i < 4; i++){
-                    if (results[i] === 1){
-                        $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
-                    } 
-                    
-                }
-                
-            }
-
-
-        })
-        guesses.forEach((guess, index) =>{
-            // only if guess is not -1 or -2, execute below code block
-            // if (guess > 0 && dupAnsCheck[index] > 0){}
-
-                if(dupAnsCheck.includes(guess)){
-                    results.push(-1)
-                    
-    
-                    for (let i = 0; i < 4; i++){
-                        if (results[i] === -1){
-                            $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
+                        if (results[i] === 1){
+                            $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
                         } 
-                        
-                    }
-                    
-                }
 
-            }
-           
-        )
+                }
+            }}
+
+        // enter code below for gray pins
+
+            for (let i = 0; i < 4; i++){
+                for (let j = 0; j < 4; j++){
+                    if(guesses[i] === dupAnsCheck[j]){
+                        results.push(2)
+                        dupAnsCheck[j] = -1
+                        guesses[i] = -2
+                        
+                        for (let i = 0; i < 4; i++){
+                            if (results[i] === 2){
+                                $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
+                            } 
+                    }
+                }
+            }}
+
+            //===================================//       
+            // guesses.forEach((guess,index) =>{
+
+            //     if(dupAnsCheck.includes(guess)){
+                    
+            //             results.push(-1)
+            //             // dupAnsCheck[index] = -1
+            //             // guesses[index] = -2
+                        
+                    
+
+            //         for (let i = 0; i < 4; i++){
+            //             if (results[i] === -1){
+            //                 $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
+            //             } 
+                        
+            //         }
+                    
+            //     }
+            // })
+            //===================================//  
         
         console.log("dupAnsCheck", dupAnsCheck)
         console.log("overallGuessArr", guesses)
         console.log("results", results)
         console.log("extraAnsArr", extraAnsArr)
         return results
-    }
+        }
+
+            
+           
+      
+
+
+ //==========latest working checkOverallAns code================//
+  
+    // guesses is an array from overallGuessArr ===>   checkOverallAns(overallGuessArr[currentRow-1])
+    // const checkOverallAns = (guesses) =>{
+    //     let results = []  //gradRay
+    //     let dupAnsCheck = []  //aRay
+    //     let extraAnsArr = []  // pop into here from dupAnsCheck
+
+    //     convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
+
+
+    //     guesses.forEach((guess, index) =>{
+            
+    //         if(dupAnsCheck[index] === guess){  // if matches push 1
+                
+    //             dupAnsCheck[index] = -1   // change the value to -1 to that position in dupAnsCheck
+    //             guesses[index] = -2                 // change the value to -2 to that position in guess
+    //             results.push(1)
+                
+    //             for (let i = 0; i < 4; i++){
+    //                 if (results[i] === 1){
+    //                     $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
+    //                 } 
+                    
+    //             }
+                
+    //         }
+
+
+    //     })
+    //     guesses.forEach((guess, index) =>{
+    //         // only if guess is not -1 or -2, execute below code block
+    //         // if (guess > 0 && dupAnsCheck[index] > 0){}
+
+    //             if(dupAnsCheck.includes(guess)){
+    //                 results.push(-1)
+    //                 //dupAnsCheck[index]
+                    
+    
+    //                 for (let i = 0; i < 4; i++){
+    //                     if (results[i] === -1){
+    //                         $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
+    //                     } 
+                        
+    //                 }
+                    
+    //             }
+
+    //         }
+           
+    //     )
+        
+    //     console.log("dupAnsCheck", dupAnsCheck)
+    //     console.log("overallGuessArr", guesses)
+    //     console.log("results", results)
+    //     console.log("extraAnsArr", extraAnsArr)
+    //     return results
+    // }
+
+//============================================================//
+
+
+
+
+
+
+
+
+
 
   
 //=============checkOverallAns codes (org)===================//

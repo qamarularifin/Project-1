@@ -31,27 +31,27 @@
 // console.log(overallGuessArr)
 
 
-const answer = [3,6,1,1]
-const guess = [6,1,1,3]
-let newAns = []
-let newGuess = []
+// const answer = [3,6,1,1]
+// const guess = [6,1,1,3]
+// let newAns = []
+// let newGuess = []
 
-let ans = newAns.push(answer.shift())
-let gue = newGuess.push(guess.shift())
-console.log(newAns)
-console.log(newGuess)
-console.log(gue)
+// let ans = newAns.push(answer.shift())
+// let gue = newGuess.push(guess.shift())
+// console.log(newAns)
+// console.log(newGuess)
+// console.log(gue)
 
-for (let i of [ans]){
-    for (let j of [gue]){
-        if (j === i){
-            console.log("exact")
-        }else{
-            console.log("semi")
-        }
-    }
+// for (let i of [ans]){
+//     for (let j of [gue]){
+//         if (j === i){
+//             console.log("exact")
+//         }else{
+//             console.log("semi")
+//         }
+//     }
     
-}
+// }
 
 
 // for (let i = 0; i < guess.length; i++){
@@ -65,3 +65,35 @@ for (let i of [ans]){
 //         // }
 //     }
 // }
+
+
+const others = []
+const answer = [3,2,5,5]
+const guess = [3,3,2,2]
+const results = []
+
+const checkAnswer = () =>{
+
+
+
+    // answer.forEach((guess, index) =>{
+    //     if (guess === answer[index]){
+    //         results.push(1)
+    //     }
+    // })
+
+    answer.forEach((guess, index) =>{
+        if (answer.includes(guess)){
+            results.push(guess)
+            others.push(answer.pop(guess))
+    
+        }
+    })
+
+    console.log(results)
+    return results
+
+}
+
+
+checkAnswer()
