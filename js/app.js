@@ -10,7 +10,6 @@ const colors = [
 
 ]
 
-
 const overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
 
 let guessReversedArray = [];
@@ -182,135 +181,51 @@ const selectPin = () =>{
 }
 
 
-const checkCorrectAnswer = (guessPin) =>{   
-    //there is 6 colors. 
-    
-    //WORK ON THIS ONEEEEE!!!!!!!!!!!!
-    // check if all guess pins exists from the answer pins
-    // use .includes with an array. Make answer pins as an array
-
-    //check all positions are correct 
-    if ($(`#${guessPin}_${0}`).css("background-color") === $("#answer-1").css("background-color")
-        && $(`#${guessPin}_${1}`).css("background-color") === $("#answer-2").css("background-color")
-        && $(`#${guessPin}_${2}`).css("background-color") === $("#answer-3").css("background-color")
-        && $(`#${guessPin}_${3}`).css("background-color") === $("#answer-4").css("background-color")
-    
-    ){
-        console.log("All correct position")
-        $(".guess-result.active").css("background-color", "red")
-    
-    } 
-    
-    // WORK ON THIS!!!!!
-    //check 1st col color correct, wrong position or non existent
-    if (answerPinArr.includes($(`#${guessPin}_${0}`).css("background-color"))){
-        
-        
-    }
-        
-        {
-        console.log("yahoo")
-    }
-
-
-    // to add back if not working
-    // //check right color, wrong position
-    // if (answerPinArr.includes($(`#${guessPin}_${0}`).css("background-color"))
-    //     || answerPinArr.includes($(`#${guessPin}_${1}`).css("background-color"))
-    //     || answerPinArr.includes($(`#${guessPin}_${2}`).css("background-color"))
-    //     || answerPinArr.includes($(`#${guessPin}_${3}`).css("background-color"))
-    
-    // )
-        
-    //     {
-    //     console.log("yahoo")
-    // }
-    
-}
-
-// paste back below if doesnt work
-// const checkCorrectAnswer = (guessPin) =>{   
-//     //there is 6 colors. 
-//     //check all positions are correct 
-//     if ($(`#${guessPin}_${0}`).css("background-color") === $("#answer-1").css("background-color")
-//         && $(`#${guessPin}_${1}`).css("background-color") === $("#answer-2").css("background-color")
-//         && $(`#${guessPin}_${2}`).css("background-color") === $("#answer-3").css("background-color")
-//         && $(`#${guessPin}_${3}`).css("background-color") === $("#answer-4").css("background-color")
-    
-//     ){
-//         console.log("All correct position")
-//         $(".guess-result.active").css("background-color", "red")
-    
-//     //check right color, wrong position
-//     } else if ($(`#${guessPin}_${0}`).css("background-color") === $("#answer-1").css("background-color")
-//         && $(`#${guessPin}_${1}`).css("background-color") === $("#answer-2").css("background-color")
-//         && $(`#${guessPin}_${2}`).css("background-color") === $("#answer-3").css("background-color")
-//         && $(`#${guessPin}_${3}`).css("background-color") === $("#answer-4").css("background-color"))
-        
-//         {
-//         console.log("wrong")
-//     } 
-    
-// }
 
 
     
     // guesses is an array from overallGuessArr ===>   checkOverallAns(overallGuessArr[currentRow-1])
     const checkOverallAns = (guesses) =>{
-        let results = []  //gradRay
-        let dupAnsCheck = []  //aRay
-        let extraAnsArr = []  // pop into here from dupAnsCheck
-
+        let results = []  
+        let dupAnsCheck = []  
+        
         convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
+        console.log("org dupAns", dupAnsCheck)
 
         ///////////////////////////
-        // guesses.forEach((guess, index) =>{
+        guesses.forEach((guess, index) =>{
             
-        //     if(guess === dupAnsCheck[index]){  // if matches push 1
+            if(guess === dupAnsCheck[index]){  // if matches push 1
+                results.push("exact")
+                dupAnsCheck[index] = "x"   // change the value to -1 to that position in dupAnsCheck
+                guesses[index] = "y"                 // change the value to -2 to that position in guess
                 
-        //         dupAnsCheck[index] = -1   // change the value to -1 to that position in dupAnsCheck
-        //         guesses[index] = -2                 // change the value to -2 to that position in guess
-        //         results.push(1)
-                
-        //         for (let i = 0; i < 4; i++){
-        //             if (results[i] === 1){
-        //                 $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
-        //             } 
+                // color the results pin as red
+                for (let i = 0; i < 4; i++){
+                    if (results[i] === "exact"){
+                        $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
+                    } 
                     
-        //         }
+                }
                 
-        //     }  
+            }  
             
 
-        // })
+        })
         ///////////////////////////////
 
-        // Red pins
-            for(let i = 0; i < 4; i++) {
-                if(guesses[i] === dupAnsCheck[i]) {
-                results.push(1);
-                dupAnsCheck[i] = -1;
-                guesses[i] = -2;
-
-                for (let i = 0; i < 4; i++){
-                        if (results[i] === 1){
-                            $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "red")
-                        } 
-
-                }
-            }}
-
-        // enter code below for gray pins
-
+            // color the results pin as gray
             for (let i = 0; i < 4; i++){
                 for (let j = 0; j < 4; j++){
+                    // console.log("dupAns", dupAnsCheck[j])
+                    // console.log("guesses", guesses[i])
                     if(guesses[i] === dupAnsCheck[j]){
-                        results.push(2)
-                        dupAnsCheck[j] = -1
-                        guesses[i] = -2
+                        results.push("semi")
+                        dupAnsCheck[j] = "x"
+                        guesses[i] = "y"
                         
                         for (let i = 0; i < 4; i++){
-                            if (results[i] === 2){
+                            if (results[i] === "semi"){
                                 $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
                             } 
                     }
@@ -342,7 +257,7 @@ const checkCorrectAnswer = (guessPin) =>{
         console.log("dupAnsCheck", dupAnsCheck)
         console.log("overallGuessArr", guesses)
         console.log("results", results)
-        console.log("extraAnsArr", extraAnsArr)
+        
         return results
         }
 
