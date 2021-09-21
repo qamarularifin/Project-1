@@ -11,32 +11,26 @@ const colors = [
 ]
 
 
-
-// not needed
-// const colorsToInt = {
-//     "1": "rgb(255,0,0)",  //red  
-//      "2": "rgb(0,0,255)" , //blue
-//      "3": "rgb(0,128,0)" , //green
-//       "4": "rgb(255,255,0)", //yellow
-//       "5": "rgb(255, 165, 0)", //orange
-//      "6": "rgb(0,0,0)", // black
-
-// }
-
-// not needed
-// const colorsToIntObj = {
-//     "rgb(255,0,0)" : 1,  //red  
-//     "rgb(0,0,255)" :  2, //blue
-//     "rgb(0,128,0)" :  3, //green
-//     "rgb(255,255,0)" : 4, //yellow
-//     "rgb(255, 165, 0)" : 5 , //orange
-//     "rgb(0,0,0)" : 6, // black
-
-// }
-
-
-
 const overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
+
+let guessReversedArray = [];
+let guessReversedResultArray = [];
+let currentRow = 0;
+let $chosenColor = "";
+let isPicked = true;
+let guessPinArr;
+let guessPinResultArr;
+let $guessPinId;
+let $sliceGuessPinId;
+
+let storedCurrentRowColor = [];
+let answerPinArr = [];
+
+//converted colors to int array
+
+let convAnswerPinArr;
+let convGuessPinArr;
+
 
 
 const displayOverallGuess = (pos, color) =>{
@@ -109,28 +103,6 @@ const colorsAnsToInt = (color) =>{
         return newArr
 
 }
-
-
-
-
-let guessReversedArray = [];
-let guessReversedResultArray = [];
-let currentRow = 0;
-let $chosenColor = "";
-let isPicked = true;
-let guessPinArr;
-let guessPinResultArr;
-let $guessPinId;
-let $sliceGuessPinId;
-
-let storedCurrentRowColor = [];
-let answerPinArr = [];
-
-//converted colors to int array
-
-let convAnswerPinArr;
-let convGuessPinArr;
-
 
 
 const answerPin = () =>{
@@ -282,22 +254,6 @@ const checkCorrectAnswer = (guessPin) =>{
 // }
 
 
-
-
-
-    //     // check one row at a time
-    // const checkAllCorrect = (currentRow) =>{
-    //     for (let i = 0; i < 4; i++){
-    //         if (overallGuessArr[currentRow][i] === convAnswerPinArr[i]){
-    //             console.log("ok")
-    //             $(`#gpin_ans_${currentRow}_0`).css("background-color", "red")
-    //         } else{
-    //             console.log("nope")
-    //         }
-
-    //     }
-        
-    // }
     
     // guesses is an array from overallGuessArr ===>   checkOverallAns(overallGuessArr[currentRow-1])
     const checkOverallAns = (guesses) =>{
@@ -307,10 +263,6 @@ const checkCorrectAnswer = (guessPin) =>{
 
         convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
 
-        //not needed
-        // for (let i = 0; i < 4; i++){
-        //     dupAnsCheck.push(convAnswerPinArr[i])
-        // }
 
         guesses.forEach((guess, index) =>{
             
@@ -419,8 +371,6 @@ const submitButton = () =>{
     
     console.log("Guess pin :", overallGuessArr[currentRow])
 
-    
-    
     console.log("current row: ", currentRow)
     currentRow++
     
@@ -446,7 +396,6 @@ const submitButton = () =>{
     
  
 
-
       // show my color array in rgb format
      //console.log("my color array: ", storedCurrentRowColor)
       // converted colors of guess-pin into integers
@@ -456,41 +405,6 @@ const submitButton = () =>{
     //  console.log("Guess pin: ", convGuessPinArr)
      
 
-
-    // // TO WORK ON!!!!!!!!!!!!!!AND REFACTORRRR
-    //  // black pin check
-    //  const getGrade = () =>{
-    //     let gradRay = []
-    //     let aRay = []
-    //     for (let i = 0; i < 4; i++){
-    //         aRay.push(convAnswerPinArr[i])
-    //     }
-    //     //console.log(aRay)
-
-    //     for (let i = 0; i < 4; i++){
-    //         if(convGuessPinArr[i] === aRay[i]){
-    //             gradRay.push(1);
-    //             aRay[i] = -1
-    //             convGuessPinArr[i] = -2
-    //         }
-    //     }
-    //     console.log(aRay)
-    //     console.log(convGuessPinArr)
-    //     console.log(gradRay)
-
-    //     return gradRay
-    // }
-
-    // getGrade()
-
-
-    
-
-
-        
-    
-
-     
 
 
 })
@@ -535,15 +449,8 @@ $(()=>{
 
 
 
-
-
-
-
-
     submitButton()
 
-
-    
 
 
 });
