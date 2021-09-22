@@ -97,6 +97,12 @@ const answerPin = () =>{
     $("#answer-4").css("background-color", colors[Math.floor(Math.random() * colors.length)])
 }
 
+const answerHide = () => {
+    $(".answer-inner-row").hide()
+    $(".submit").css("margin", "5px 0px 0px 130px")   // org position "5px 0px 0px 302px"
+
+}
+
 
 // reverse the guess-row-pin
 const reverseGuessRowPin = () =>{
@@ -212,11 +218,22 @@ const selectPin = () =>{
         console.log("overallGuessArr", guesses)
         console.log("results", results)
         
-        //return results //not needed
+        return results //not needed
         }
 
 
-        const checkWin = () =>{
+        const checkWin = (guesses) =>{
+
+          guesses.every((guess, i) =>{
+              if (guess === "y"){
+                  console.log("You win")
+              }
+
+          })
+            // if (checkOverallAns(guesses) === ["exact", "exact", "exact", "exact"]){
+            //     prompt("You win")
+            // }
+            
 
 
         }
@@ -225,6 +242,7 @@ const submitButton = () =>{
 
    $(".submit").on("click", ()=>{
 
+    
     // Remove all .active class
     $(".active").removeClass("active")
     
@@ -250,6 +268,8 @@ const submitButton = () =>{
     // check all answers here
     //checkAllCorrect(currentRow - 1)
     checkOverallAns(overallGuessArr[currentRow-1])
+    checkWin(overallGuessArr[currentRow-1])
+    
     
       // show my color array in rgb format
      //console.log("my color array: ", storedCurrentRowColor)
@@ -260,13 +280,14 @@ const submitButton = () =>{
     //  console.log("Guess pin: ", convGuessPinArr)
      
 
+
 })
 }
 
 
 $(()=>{
 
-    
+    answerHide()
     reverseGuessRowPin()
     reverseGuessRowResultPin()
     selectPin()
