@@ -168,12 +168,12 @@ const selectPin = () =>{
 
 
 
-    
+
     // guesses is an array from overallGuessArr ===> checkOverallAns(overallGuessArr[currentRow-1])
     const checkOverallAns = (guesses) =>{
-        let results = []  
+          
         let dupAnsCheck = []  
-        
+        let results = []
         convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
         console.log("org dupAns", dupAnsCheck)
 
@@ -222,19 +222,18 @@ const selectPin = () =>{
         }
 
 
-        const checkWin = (guesses) =>{
-
-          guesses.every((guess, i) =>{
-              if (guess === "y"){
-                  console.log("You win")
-              }
-
-          })
-            // if (checkOverallAns(guesses) === ["exact", "exact", "exact", "exact"]){
-            //     prompt("You win")
-            // }
-            
-
+        const checkWin = (result) =>{
+            console.log("kkk", result)
+                if (result[0] === "exact"
+                    && result[1] === "exact"
+                    && result[2] === "exact"
+                    && result[3] ==="exact" ){
+                        alert("winner")
+                        for (let i = 0; i < 4; i++){
+                            result[i] = []
+                        }
+                    //console.log(result)
+                        }
 
         }
 
@@ -266,9 +265,9 @@ const submitButton = () =>{
     })
 
     // check all answers here
-    //checkAllCorrect(currentRow - 1)
+
+    checkWin(checkOverallAns(overallGuessArr[currentRow-1]))
     checkOverallAns(overallGuessArr[currentRow-1])
-    checkWin(overallGuessArr[currentRow-1])
     
     
       // show my color array in rgb format
@@ -287,7 +286,7 @@ const submitButton = () =>{
 
 $(()=>{
 
-    answerHide()
+    //answerHide()
     reverseGuessRowPin()
     reverseGuessRowResultPin()
     selectPin()
