@@ -105,21 +105,38 @@ const answerPin = () =>{
 }
 
 
-// reverse the guess-pin
+// reverse the guess-row-pin
 const reverseGuessRowPin = () =>{
     
-    for (let i = 9; i >=0; i--){
+    let arr = [0,1,2,3,4,5,6,7,8,9]
+    
+    arr.forEach((item, i) =>{ 
+
         guessReversedArray.push($(".guess-row-pin")[i])
-    }
-    //console.log(guessReversedArray)
+    } )
+    
+    return guessReversedArray.reverse()
+
+    // for (let i = 9; i >=0; i--){
+    //     guessReversedArray.push($(".guess-row-pin")[i])
+    // }
+    // console.log(guessReversedArray)
+
 }
 
 // reverse the guess-row-result
 const reverseGuessRowResultPin = () =>{
-    
-    for (let i = 9; i >=0; i--){
+
+    let arr = [0,1,2,3,4,5,6,7,8,9]
+
+    arr.forEach((item, i) =>{
         guessReversedResultArray.push($(".guess-row-result")[i])
-    }
+    })
+
+    return guessReversedResultArray.reverse()
+    // for (let i = 9; i >=0; i--){
+    //     guessReversedResultArray.push($(".guess-row-result")[i])
+    // }
     //console.log(guessReversedResultArray)
 }
 
@@ -222,6 +239,11 @@ const selectPin = () =>{
         }
 
 
+        const checkWin = () =>{
+
+
+        }
+
 const submitButton = () =>{
 
    $(".submit").on("click", ()=>{
@@ -294,7 +316,7 @@ $(()=>{
         
         //console.log(guessPinArr)
         for(let j = 0; j < 4; j++) {
-            $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)
+            $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)  //$(guessPinArr[j]), j refers to 0
             $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
         }
     }
