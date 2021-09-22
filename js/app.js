@@ -1,15 +1,6 @@
 
 
-const colors = [
-    "red",
-    "blue",
-    "green",
-    "yellow",
-    "orange",
-    "black",
-
-]
-
+const colors = ["red","blue","green","yellow","orange","black",]
 const overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
 
 let guessReversedArray = [];
@@ -21,6 +12,8 @@ let guessPinArr;
 let guessPinResultArr;
 let $guessPinId;
 let $sliceGuessPinId;
+let arr4 = [0,1,2,3]
+let arr9 = [0,1,2,3,4,5,6,7,8,9]
 
 let storedCurrentRowColor = [];
 let answerPinArr = [];
@@ -108,36 +101,20 @@ const answerPin = () =>{
 // reverse the guess-row-pin
 const reverseGuessRowPin = () =>{
     
-    let arr = [0,1,2,3,4,5,6,7,8,9]
-    
-    arr.forEach((item, i) =>{ 
+    arr9.forEach((item, i) =>{ 
 
         guessReversedArray.push($(".guess-row-pin")[i])
     } )
-    
     return guessReversedArray.reverse()
-
-    // for (let i = 9; i >=0; i--){
-    //     guessReversedArray.push($(".guess-row-pin")[i])
-    // }
-    // console.log(guessReversedArray)
-
 }
 
 // reverse the guess-row-result
 const reverseGuessRowResultPin = () =>{
 
-    let arr = [0,1,2,3,4,5,6,7,8,9]
-
-    arr.forEach((item, i) =>{
+    arr9.forEach((item, i) =>{
         guessReversedResultArray.push($(".guess-row-result")[i])
     })
-
     return guessReversedResultArray.reverse()
-    // for (let i = 9; i >=0; i--){
-    //     guessReversedResultArray.push($(".guess-row-result")[i])
-    // }
-    //console.log(guessReversedResultArray)
 }
 
 
@@ -259,16 +236,16 @@ const submitButton = () =>{
     // Add above row with active class and move .active class one row upwards 
     // and store guess pin colors in array.
     // Add guess-result with class active
-    for (let i = 0; i < 4; i++){
+
+    
+    arr4.forEach((item,i) =>{
         $(`#gpin_${currentRow}_${i}`).addClass("active")
         // add guess-result with class active
         $(`#gpin_ans_${currentRow-1}_${i}`).addClass("active")
 
         // get guess current row colors pushed to array "storedCurrentRowColor"
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
-        
-        
-    }
+    })
 
     // check all answers here
     //checkAllCorrect(currentRow - 1)
@@ -315,6 +292,7 @@ $(()=>{
         guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result") // get individual guess pin result
         
         //console.log(guessPinArr)
+             
         for(let j = 0; j < 4; j++) {
             $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)  //$(guessPinArr[j]), j refers to 0
             $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
