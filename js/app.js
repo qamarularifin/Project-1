@@ -104,6 +104,12 @@ const answerHide = () => {
 
 }
 
+const answerShow = () => {
+    $(".answer-inner-row").show()
+    $(".submit").css("margin", "5px 0px 0px 10px")   // org position "5px 0px 0px 302px"
+
+}
+
 
 // reverse the guess-row-pin
 const reverseGuessRowPin = () =>{
@@ -230,6 +236,7 @@ const selectPin = () =>{
                 && $(`#gpin_ans_${currentRow-1}_${2}`).css("background-color") === "rgb(255, 0, 0)"
                 && $(`#gpin_ans_${currentRow-1}_${3}`).css("background-color") === "rgb(255, 0, 0)"){
                     $(".submit").text("You Won!!!").css("background-color", "green")
+                    answerShow()
                 }
 
         }
@@ -283,7 +290,7 @@ const submitButton = () =>{
 
 $(()=>{
 
-    //answerHide()
+    answerHide()
     reverseGuessRowPin()
     reverseGuessRowResultPin()
     selectPin()
