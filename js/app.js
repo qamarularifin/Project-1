@@ -18,6 +18,7 @@ let arr9 = [0,1,2,3,4,5,6,7,8,9]
 let storedCurrentRowColor = [];
 let answerPinArr = [];
 
+
 //converted colors to int array
 
 let convAnswerPinArr;
@@ -171,16 +172,16 @@ const selectPin = () =>{
 
     // guesses is an array from overallGuessArr ===> checkOverallAns(overallGuessArr[currentRow-1])
     const checkOverallAns = (guesses) =>{
-          
-        let dupAnsCheck = []  
         let results = []
+        let dupAnsCheck = []  
+        
         convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
         console.log("org dupAns", dupAnsCheck)
 
         ///////////////////////////
         guesses.forEach((guess, index) =>{
             // color the results pin as red
-            if(guess === dupAnsCheck[index]){  
+            if(guess === dupAnsCheck[index]){  // guess is each element within an array
                 results.push("exact")
                 dupAnsCheck[index] = "x"   // change the value to x to that position in dupAnsCheck
                 guesses[index] = "y"       // change the value to y to that position in guess
@@ -218,22 +219,18 @@ const selectPin = () =>{
         console.log("overallGuessArr", guesses)
         console.log("results", results)
         
-        return results //not needed
+        return results 
         }
 
 
-        const checkWin = (result) =>{
-            console.log("kkk", result)
-                if (result[0] === "exact"
-                    && result[1] === "exact"
-                    && result[2] === "exact"
-                    && result[3] ==="exact" ){
-                        alert("winner")
-                        for (let i = 0; i < 4; i++){
-                            result[i] = []
-                        }
-                    //console.log(result)
-                        }
+        const checkWin = () =>{
+              
+                if ($(`#gpin_ans_${currentRow-1}_${0}`).css("background-color") === "rgb(255, 0, 0)"
+                && $(`#gpin_ans_${currentRow-1}_${1}`).css("background-color") === "rgb(255, 0, 0)"
+                && $(`#gpin_ans_${currentRow-1}_${2}`).css("background-color") === "rgb(255, 0, 0)"
+                && $(`#gpin_ans_${currentRow-1}_${3}`).css("background-color") === "rgb(255, 0, 0)"){
+                    $(".submit").text("You Won!!!").css("background-color", "green")
+                }
 
         }
 
@@ -266,9 +263,9 @@ const submitButton = () =>{
 
     // check all answers here
 
-    checkWin(checkOverallAns(overallGuessArr[currentRow-1]))
-    checkOverallAns(overallGuessArr[currentRow-1])
     
+    checkOverallAns(overallGuessArr[currentRow-1])
+    checkWin()
     
       // show my color array in rgb format
      //console.log("my color array: ", storedCurrentRowColor)
