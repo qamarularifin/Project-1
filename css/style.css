@@ -1,26 +1,31 @@
 #outer-body {
   width: 400px;
   height: 690px;
-  border: 1px solid black;
+  border: 5px solid black;
+  border-radius: 10%;
   margin: 0 auto;
+  /* margin: 100px; */
+  background-color: rgb(192, 108, 74);
 }
 
 .answer-outer-row {
   display: flex;
-  width: 378px;
+  width: 270px;
   height: 50px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
-  margin: 5px 0 0 10px;
+  margin: 5px 10px 0px 10px;
 }
 
 .answer-inner-row {
   display: flex;
   width: 250px;
   height: 39px;
-  border: 1px solid red;
+  border: 1px solid black;
+  border-radius: 20%;
   margin: 0 auto;
   margin: 5px 0px 0px 10px;
+  background-color: rgb(221, 116, 84);
 }
 
 .answer-pin {
@@ -33,19 +38,21 @@
 }
 
 .submit {
-  width: 60px;
+  width: 100px;
   height: 39px;
-  border: 1px solid blue;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 30%;
   margin: 0 auto;
-  margin: 5px 0 0 40px;
+  margin: 5px 0px 90px 40px;
   text-align: center;
+  background-color: azure;
 }
 
 .outer-guess-row {
   display: flex;
   width: 378px;
   height: 50px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
   margin: 5px 0 0 10px;
 }
@@ -55,8 +62,10 @@
   width: 378px;
   height: 40px;
   border: 1px solid black;
+  border-radius: 20%;
   margin: 0 auto;
   margin: 5px 0 0 10px;
+  background-color: rgb(167, 154, 163);
 }
 
 .guess-row-result {
@@ -65,18 +74,20 @@
   width: 100px;
   height: 40px;
   border: 1px solid black;
+  border-radius: 30%;
   margin: 0 auto;
   justify-content: center;
   margin: 5px 10px 0 10px;
+  background-color: rgb(228, 125, 84);
 }
 
 .guess-pin {
-  width: 40px;
-  height: 30px;
+  width: 45px;
+  height: 35px;
   border: 1px solid black;
   border-radius: 50%;
   margin: 0 auto;
-  margin: 5px 10px 10px 10px;
+  margin: 1.5px 10px 10px 10px;
 }
 
 .guess-result {
@@ -92,7 +103,7 @@
   display: flex;
   width: 378px;
   height: 50px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
   margin: 5px 0 0 10px;
 }
@@ -107,11 +118,11 @@
 }
 
 .select-pin:hover {
-  border: 1px solid red;
+  border: 3px solid white;
 }
 
 .guess-pin:hover {
-  border: 1px solid red;
+  border: 3px solid white;
 }
 
 .org-color {

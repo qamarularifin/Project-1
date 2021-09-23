@@ -17,6 +17,10 @@ let arr9 = [0,1,2,3,4,5,6,7,8,9]
 
 let storedCurrentRowColor = [];
 let answerPinArr = [];
+const checkSound = new Audio("./sounds/swish.mp3");
+const winSound = new Audio("./sounds/cash.mp3");
+const lostSound = new Audio("./sounds/aww.mp3");
+
 
 
 //converted colors to int array
@@ -250,6 +254,7 @@ const winningHighlightRow = () =>{
                     $(".submit").text("You Won!!!").css("background-color", "green")
                     winningHighlightRow()
                     answerShow()
+                    winSound.play()
                 }
 
                 //////////exceed guess-pin-row 10
@@ -257,6 +262,7 @@ const winningHighlightRow = () =>{
                 if (currentRow > 9 ){
                     $(".submit").text("You Lost!!!").css("background-color", "red")
                     answerShow()
+                    lostSound.play()
                 }
 
 
@@ -266,7 +272,7 @@ const submitButton = () =>{
 
    $(".submit").on("click", ()=>{
 
-    $(".guess-row-pin").css("border", "1px solid black") ///newwwwwww
+    $(".guess-row-pin").css("border", "1px solid black") 
     
     // Remove all .active class
     $(".active").removeClass("active")
@@ -295,7 +301,7 @@ const submitButton = () =>{
 
 
     // check all answers here
-    
+    checkSound.play()
     checkOverallAns(overallGuessArr[currentRow-1])
     checkWin()
     

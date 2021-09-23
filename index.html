@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MasterMind</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+    />
+
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -22,7 +27,7 @@
           <div class="answer-pin" id="answer-3"></div>
           <div class="answer-pin" id="answer-4"></div>
         </div>
-        <div class="submit">Click to Submit</div>
+        <div><button class="submit btn-primary">Check!</button></div>
       </div>
 
       <!-- Number 9 -->
@@ -171,7 +176,7 @@
 
       <!-- Number 0 -->
       <div class="outer-guess-row">
-        <div class="guess-row-pin">
+        <div class="guess-row-pin active">
           <div class="guess-pin active"></div>
           <div class="guess-pin active"></div>
           <div class="guess-pin active"></div>
