@@ -173,6 +173,18 @@ const selectPin = () =>{
 }
 
 
+const highlightRow = () =>{
+
+    if ($(".guess-row-pin").hasClass("active")){
+        $(".guess-row-pin.active").css("border", "1.5px solid white")
+
+    } 
+    
+}
+
+const winningHighlightRow = () =>{
+    $(".guess-row-pin").css("border", "1.5px solid white")
+}
 
 
 
@@ -236,6 +248,7 @@ const selectPin = () =>{
                 && $(`#gpin_ans_${currentRow-1}_${2}`).css("background-color") === "rgb(255, 0, 0)"
                 && $(`#gpin_ans_${currentRow-1}_${3}`).css("background-color") === "rgb(255, 0, 0)"){
                     $(".submit").text("You Won!!!").css("background-color", "green")
+                    winningHighlightRow()
                     answerShow()
                 }
 
@@ -245,6 +258,7 @@ const submitButton = () =>{
 
    $(".submit").on("click", ()=>{
 
+    $(".guess-row-pin").css("border", "1px solid black") ///newwwwwww
     
     // Remove all .active class
     $(".active").removeClass("active")
@@ -260,16 +274,19 @@ const submitButton = () =>{
 
     
     arr4.forEach((item,i) =>{
+        // add guess-pin with class active
         $(`#gpin_${currentRow}_${i}`).addClass("active")
         // add guess-result with class active
         $(`#gpin_ans_${currentRow-1}_${i}`).addClass("active")
+        // add guess-pin-row with class active
+        $(`#guess_row_pin_${currentRow}`).addClass("active")
 
         // get guess current row colors pushed to array "storedCurrentRowColor"
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
     })
 
-    // check all answers here
 
+    // check all answers here
     
     checkOverallAns(overallGuessArr[currentRow-1])
     checkWin()
@@ -282,6 +299,7 @@ const submitButton = () =>{
     //  convGuessPinArr = colorsToInt(storedCurrentRowColor)
     //  console.log("Guess pin: ", convGuessPinArr)
      
+    highlightRow()
 
 
 })
@@ -309,21 +327,26 @@ $(()=>{
     // For class selectors, jQuery uses JavaScript's native 
     // getElementsByClassName() function if the browser supports it.
 
-    // To provide id to individual guess-pin and guess-result
+    // To provide id to individual guess-pin and guess-result and each guess-pin-row
     for(let i = 0; i < 10; i++) {
         
         guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin"); // get individual guess pin
         guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result") // get individual guess pin result
         
+        $(guessReversedArray[i]).attr("id", `guess_row_pin_${i}`) //set individual id for each guess-pin-row
+        
+        
         //console.log(guessPinArr)
              
         for(let j = 0; j < 4; j++) {
             $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)  //$(guessPinArr[j]), j refers to 0
-            $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)
+            $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)  
         }
     }
 
+    
     submitButton()
+    
 
 });
 
