@@ -237,7 +237,7 @@ const winningHighlightRow = () =>{
         console.log("overallGuessArr", guesses)
         console.log("results", results)
         
-        return results 
+        //return results //not needed
         }
 
 
@@ -251,6 +251,14 @@ const winningHighlightRow = () =>{
                     winningHighlightRow()
                     answerShow()
                 }
+
+                //////////exceed guess-pin-row 10
+
+                if (currentRow > 9 ){
+                    $(".submit").text("You Lost!!!").css("background-color", "red")
+                    answerShow()
+                }
+
 
         }
 
