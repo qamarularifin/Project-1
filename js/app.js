@@ -21,10 +21,7 @@ const checkSound = new Audio("./sounds/swish.mp3");
 const winSound = new Audio("./sounds/cash.mp3");
 const lostSound = new Audio("./sounds/aww.mp3");
 
-
-
 //converted colors to int array
-
 let convAnswerPinArr;
 let convGuessPinArr;
 
@@ -38,7 +35,6 @@ const displayOverallGuess = (pos, color) =>{
     //console.log(overallGuessArr)
     
 }
-
 
 // pass in $chosenColor into array
 const colorsToInt = (color) =>{
@@ -151,26 +147,9 @@ const selectPin = () =>{
                     $(event.target).css("background-color", $chosenColor)
                     // generate an id based on button pressed
                     let $guessPinId = $(event.target).attr("id")    //here issue is duplicatess
-                    // slice to get gpin_0 only
-                    $sliceGuessPinId = $guessPinId.slice(0, 6) // this is for old method of checking without integers
-                    //console.log($sliceGuessPinId) // will print gpin_0
-                    //console.log($guessPinId)
-                    displayOverallGuess($guessPinId, $chosenColor)
-                       
+                    displayOverallGuess($guessPinId, $chosenColor)    
                 } 
-                // might not needed
-            //     else{
-
-            //       /////////////////////////////////////////////////
-            //           //Click again to remove the color
-            //         $(".guess-pin.active").on("click", (event)=>{
-            //             $(event.target).css("background-color", "white")
-                        
-            // })
-            //     ////////////////////////////////////////////////
-                    
-            //     }
-                
+              
             })
 
         })
@@ -191,9 +170,8 @@ const winningHighlightRow = () =>{
 }
 
 
-
-    // guesses is an array from overallGuessArr ===> checkOverallAns(overallGuessArr[currentRow-1])
-    const checkOverallAns = (guesses) =>{
+// guesses is an array from overallGuessArr ===> checkOverallAns(overallGuessArr[currentRow-1])
+const checkOverallAns = (guesses) =>{
         let results = []
         let dupAnsCheck = []  
         
@@ -241,30 +219,28 @@ const winningHighlightRow = () =>{
         console.log("overallGuessArr", guesses)
         console.log("results", results)
         
-        //return results //not needed
+        
         }
 
 
-        const checkWin = () =>{
+const checkWin = () =>{
               
-                if ($(`#gpin_ans_${currentRow-1}_${0}`).css("background-color") === "rgb(255, 0, 0)"
-                && $(`#gpin_ans_${currentRow-1}_${1}`).css("background-color") === "rgb(255, 0, 0)"
-                && $(`#gpin_ans_${currentRow-1}_${2}`).css("background-color") === "rgb(255, 0, 0)"
-                && $(`#gpin_ans_${currentRow-1}_${3}`).css("background-color") === "rgb(255, 0, 0)"){
-                    $(".submit").text("You Won!!!").css("background-color", "green")
-                    winningHighlightRow()
-                    answerShow()
-                    winSound.play()
-                }
+            if ($(`#gpin_ans_${currentRow-1}_${0}`).css("background-color") === "rgb(255, 0, 0)"
+            && $(`#gpin_ans_${currentRow-1}_${1}`).css("background-color") === "rgb(255, 0, 0)"
+            && $(`#gpin_ans_${currentRow-1}_${2}`).css("background-color") === "rgb(255, 0, 0)"
+            && $(`#gpin_ans_${currentRow-1}_${3}`).css("background-color") === "rgb(255, 0, 0)"){
+                $(".submit").text("You Won!!!").css("background-color", "green")
+                winningHighlightRow()
+                answerShow()
+                winSound.play()
+            }
 
-                //////////exceed guess-pin-row 10
-
-                if (currentRow > 9 ){
-                    $(".submit").text("You Lost!!!").css("background-color", "red")
-                    answerShow()
-                    lostSound.play()
-                }
-
+            // lost game if exceed currentRow 9
+            if (currentRow > 9 ){
+                $(".submit").text("You Lost!!!").css("background-color", "red")
+                answerShow()
+                lostSound.play()
+            }
 
         }
 
@@ -286,7 +262,6 @@ const submitButton = () =>{
     // and store guess pin colors in array.
     // Add guess-result with class active
 
-    
     arr4.forEach((item,i) =>{
         // add guess-pin with class active
         $(`#gpin_${currentRow}_${i}`).addClass("active")
@@ -303,16 +278,7 @@ const submitButton = () =>{
     // check all answers here
     checkSound.play()
     checkOverallAns(overallGuessArr[currentRow-1])
-    checkWin()
-    
-      // show my color array in rgb format
-     //console.log("my color array: ", storedCurrentRowColor)
-      // converted colors of guess-pin into integers
-    
-    // might not needed
-    //  convGuessPinArr = colorsToInt(storedCurrentRowColor)
-    //  console.log("Guess pin: ", convGuessPinArr)
-     
+    checkWin()     
     highlightRow()
 
 
@@ -346,15 +312,12 @@ $(()=>{
         
         guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin"); // get individual guess pin
         guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result") // get individual guess pin result
-        
         $(guessReversedArray[i]).attr("id", `guess_row_pin_${i}`) //set individual id for each guess-pin-row
-        
-        
-        //console.log(guessPinArr)
+    
              
-        for(let j = 0; j < 4; j++) {
-            $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)  //$(guessPinArr[j]), j refers to 0
-            $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)  
+    for(let j = 0; j < 4; j++) {
+        $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)  //$(guessPinArr[j]), j refers to 0
+        $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)  
         }
     }
 
