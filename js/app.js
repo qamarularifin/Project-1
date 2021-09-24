@@ -288,6 +288,18 @@ const submitButton = () =>{
 
 $(()=>{
 
+    //-----modal---------//
+
+    $("#open").on("click", () =>{
+        $(".modal-container").addClass("show")
+    })
+
+    $("#close").on("click", () =>{
+        $(".modal-container").removeClass("show")
+    })
+    ///////////////////////
+
+
     answerHide()
     reverseGuessRowPin()
     reverseGuessRowResultPin()
