@@ -1,6 +1,16 @@
 
 
-const colors = ["red","blue","green","yellow","orange","black",]
+//const colors = ["red","pink","blue","purple","green","cyan","yellow","gray","orange","lime","black","navy"]
+
+const selectPin1 = ["red", "pink"]
+const selectPin2 = ["blue", "purple"]
+const selectPin3 = ["green", "cyan"]
+const selectPin4 = ["yellow", "gray"]
+const selectPin5 = ["orange", "lime"]
+const selectPin6 = ["black", "navy"]
+
+const newSelectColor = []
+
 const overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
 
 let guessReversedArray = [];
@@ -39,22 +49,22 @@ const displayOverallGuess = (pos, color) =>{
 // pass in $chosenColor into array
 const colorsToInt = (color) =>{
 
-        if (color === "rgb(255, 0, 0)"){
+        if (color === "rgb(255, 0, 0)" || color === "rgb(255, 192, 203)"){     //red and pink
             return 1
         }
-        if (color === "rgb(0, 0, 255)"){
+        if (color === "rgb(0, 0, 255)" || color === "rgb(128, 0, 128)"){    //blue and purple
             return 2
         }
-        if (color === "rgb(0, 128, 0)"){
+        if (color === "rgb(0, 128, 0)" || color === "rgb(0, 255, 255)"){   //green and cyan
             return 3
         }
-        if (color === "rgb(255, 255, 0)"){
+        if (color === "rgb(255, 255, 0)" || color === "rgb(128, 128, 128)"){   //yellow and gray
             return 4
         }
-        if (color === "rgb(255, 165, 0)"){
+        if (color === "rgb(255, 165, 0)" || color === "rgb(0, 255, 0)"){    //orange and lime
             return 5
         }
-        if (color === "rgb(0, 0, 0)"){
+        if (color === "rgb(0, 0, 0)" || color === "rgb(0, 0, 128)"){      //black and navy
             return 6
         }
 
@@ -66,22 +76,22 @@ const colorsAnsToInt = (color) =>{
     let newArr = []
     
         for (let i = 0; i < color.length; i++){
-            if (color[i] === "rgb(255, 0, 0)"){
+            if (color[i] === "rgb(255, 0, 0)" || color[i] === "rgb(255, 192, 203)"){
                 newArr.push(1)
             }
-            if (color[i] === "rgb(0, 0, 255)"){
+            if (color[i] === "rgb(0, 0, 255)" || color[i] === "rgb(128, 0, 128)"){
                 newArr.push(2)
             }
-            if (color[i] === "rgb(0, 128, 0)"){
+            if (color[i] === "rgb(0, 128, 0)" || color[i] === "rgb(0, 255, 255)"){
                 newArr.push(3)
             }
-            if (color[i] === "rgb(255, 255, 0)"){
+            if (color[i] === "rgb(255, 255, 0)" || color[i] === "rgb(128, 128, 128)"){
                 newArr.push(4)
             }
-            if (color[i] === "rgb(255, 165, 0)"){
+            if (color[i] === "rgb(255, 165, 0)" || color[i] === "rgb(0, 255, 0)"){
                 newArr.push(5)
             }
-            if (color[i] === "rgb(0, 0, 0)"){
+            if (color[i] === "rgb(0, 0, 0)" || color[i] === "rgb(0, 0, 128)"){
                 newArr.push(6)
             }
         }
@@ -92,10 +102,11 @@ const colorsAnsToInt = (color) =>{
 
 const answerPin = () =>{
     
-    $("#answer-1").css("background-color", colors[Math.floor(Math.random() * colors.length)])
-    $("#answer-2").css("background-color", colors[Math.floor(Math.random() * colors.length)])
-    $("#answer-3").css("background-color", colors[Math.floor(Math.random() * colors.length)])
-    $("#answer-4").css("background-color", colors[Math.floor(Math.random() * colors.length)])
+    // change colors to selector colors
+    $("#answer-1").css("background-color", newSelectColor[Math.floor(Math.random() * newSelectColor.length)])
+    $("#answer-2").css("background-color", newSelectColor[Math.floor(Math.random() * newSelectColor.length)])
+    $("#answer-3").css("background-color", newSelectColor[Math.floor(Math.random() * newSelectColor.length)])
+    $("#answer-4").css("background-color", newSelectColor[Math.floor(Math.random() * newSelectColor.length)])
 }
 
 const answerHide = () => {
@@ -301,6 +312,38 @@ $(()=>{
         $(".how-container").removeClass("showp")
     })
     ///////////////////////
+
+    //======random select-pin color=========//
+
+
+
+    const placeSelectPin = (selectPin) =>{
+
+        return selectPin[Math.floor(Math.random() * selectPin.length)]
+    }
+
+    
+    
+    // for (let i = 1; i < 7; i++){
+    //     $(`#select-pin-${i}`).css("background-color", placeSelectPin(`${selectPin}`) + `${i}`)
+
+    // }
+    
+    $("#select-pin-1").css("background-color", placeSelectPin(selectPin1))
+    $("#select-pin-2").css("background-color", placeSelectPin(selectPin2))
+    $("#select-pin-3").css("background-color", placeSelectPin(selectPin3))
+    $("#select-pin-4").css("background-color", placeSelectPin(selectPin4))
+    $("#select-pin-5").css("background-color", placeSelectPin(selectPin5))
+    $("#select-pin-6").css("background-color", placeSelectPin(selectPin6))
+
+    //=========answer-pin to pick from placeSelectPin==============//
+
+    for (let i = 1; i <7; i++){
+        newSelectColor.push($(`#select-pin-${i}`).eq(0).css("background-color"))
+    }
+    //console.log("ans color array: ", newSelectColor)
+
+    //====================================//
 
 
     answerHide()
