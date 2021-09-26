@@ -16,7 +16,8 @@ body {
 /* For Modal */
 
 /* .modal-container is for the whole background + the mastermind board*/
-.modal-container {
+.modal-container,
+.how-container {
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -31,13 +32,15 @@ body {
   transition: opacity 0.7s ease;
 }
 
-.modal-container.show {
+.modal-container.show,
+.how-container.showp {
   pointer-events: auto;
   opacity: 1;
 }
 
 /* .modal is for the small box with information only */
-.modal {
+.modal,
+.how-modal {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -47,11 +50,13 @@ body {
   text-align: center;
 }
 
-.moda1 h1 {
+.moda1 h1,
+.how-modal h1 {
   margin: 0;
 }
 
-.modal p {
+.modal p,
+.how-modal p {
   font-size: 14px;
   opacity: 0.7;
 }
@@ -63,6 +68,19 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: 14px;
   padding: 10px 25px;
+  margin: 300px;
+}
+
+#how {
+  background-color: #9aa3a0;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  padding: 10px 25px;
+  position: absolute;
+  margin: 10px 700px 10px 10px;
+  opacity: 1;
 }
 /* Modal ends here */
 

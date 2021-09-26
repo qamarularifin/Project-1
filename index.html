@@ -23,18 +23,6 @@
     <!-- For Modal -->
     <button id="open">MasterMind</button>
     <div class="modal-container" id="modal_container">
-      <div class="modal">
-        <h1>Instructions</h1>
-        <p>
-          Each guess is made by placing a row of code pegs on the decoding
-          board. Once placed, the codemaker provides feedback by placing from
-          zero to four key pegs in the small holes of the row with the guess. A
-          colored or black key peg is placed for each code peg from the guess
-          which is correct in both color and position.
-        </p>
-        <button id="close">Close me</button>
-      </div>
-
       <div id="outer-body">
         <div class="answer-outer-row">
           <div class="answer-inner-row">
@@ -216,6 +204,20 @@
           <div class="select-pin" style="background-color: black"></div>
         </div>
       </div>
+      <!-- How to play modal -->
+      <button id="how">How to play</button>
+      <div class="how-container" id="how_container">
+        <div class="how-modal">
+          <h2>Instructions</h2>
+          <p>
+            Each guess is made by placing a row of code pegs on the decoding
+            board. Once placed, the codemaker provides feedback by placing from
+            zero to four key pegs in the small holes of the row with the guess. A
+            red or gray key peg is placed for each code peg from the guess
+            which is correct in both color and position.
+          </p>
+          <button id="close">Close me</button>
+        </div>
     </div>
   </body>
 </html>

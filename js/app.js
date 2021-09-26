@@ -142,7 +142,6 @@ const selectPin = () =>{
 
             $(".guess-pin.active").on("click", (event)=>{
 
-                
                 if ($(event.target).hasClass("active")){
                     $(event.target).css("background-color", $chosenColor)
                     // generate an id based on button pressed
@@ -294,8 +293,12 @@ $(()=>{
         $(".modal-container").addClass("show")
     })
 
+    $("#how").on("click", () =>{
+        $(".how-container").addClass("showp")
+    })
+
     $("#close").on("click", () =>{
-        $(".modal-container").removeClass("show")
+        $(".how-container").removeClass("showp")
     })
     ///////////////////////
 
