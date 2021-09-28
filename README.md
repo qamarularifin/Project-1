@@ -5,6 +5,9 @@ Guess the color of hidden pegs. A deduction game where each player
 takes turn making a limited number of guesses, 
 using logic to deduce what pegs the opponent has hidden.
 
+## Link to the game
+https://qamarularifin.github.io/Project-1/
+
 ## Minimum requirement for the game:
 1. Choose color from the selector pegs
 2. Paint the guess pegs one row at a time
