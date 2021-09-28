@@ -45,7 +45,7 @@ https://qamarularifin.github.io/Project-1/
 - Game started off with having the player to be able to choose a color from the selector peg
 - Each peg (guess, result, answer, selector) is assigned with ids and this was done with the use of for loops
 - The next design of the game is to disable the other rows from being able to be selected. This was done dynamically by adding and removing class active for each row through a check button
-- Since the peg colors are in rgb format, they are converted into integers with the use if if conditions that return number 1 to 6
+- Since the peg colors are in rgb format, they are converted into integers with the use of if conditions that return number 1 to 6
 - With integers, it will be easier to compare number to number instead of rgb to rgb in order to check for red pegs or gray pegs
 - These numbers were then stored in a master guess array which is a nested array of array. This enables the comparison of guess array to the answer array
 - For determining the red pegs (correct color, correct position), this is done by comparing the same numbers via a for loop. If they are the same, they are marked with a string to prevent duplication of same number
