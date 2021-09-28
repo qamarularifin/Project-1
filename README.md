@@ -8,7 +8,7 @@ using logic to deduce what pegs the opponent has hidden.
 ## Link
 https://qamarularifin.github.io/Project-1/
 
-## Minimum requirement for the game:
+## Minimum requirement
 1. Choose color from the selector pegs
 2. Paint the guess pegs one row at a time
 3. Other rows must not be able to be painted
