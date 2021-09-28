@@ -1,5 +1,5 @@
 # Project-1
 
-# Mastermind
+## Mastermind
 
-# Minimum requirement for the game:
+## Minimum requirement for the game:
