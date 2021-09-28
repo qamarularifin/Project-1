@@ -26,5 +26,18 @@ https://qamarularifin.github.io/Project-1/
 10. An indication to show if the user has won or lost the game
 
 ## How to play
+1. Player will click the colors from selector pegs (first row) and click on the guess pegs (row above)
+2. Based on the selected colors placed on the guess pegs, player will receive feedback/results from the results pegs on the right
+3. If the chosen color exists, and correct position, the results pegs will return red peg
+4. If the chosen color exists but in the wrong position, the results pegs will return gray peg
+5. If the chose color doesn't exist, it will return nothing
+6. Player will be required to use his/her deductive reasoning to guess the correct pegs
 
 ## Logics of the game
+### HTML
+- The game started off with the designing of the layout of the mastermind board using HTML
+- Initially, border lines were used in order to determine the correct position of the selector row, guess rows, results rows and answer row
+- Each row was wrapped by container divs in order to enable using of flex box to wrap around the circle pegs
+
+### Javascript
+- In order for the game to be 
