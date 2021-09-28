@@ -24,3 +24,7 @@ https://qamarularifin.github.io/Project-1/
 8. Answer pegs will be randomly generated and hidden
 9. Answer pegs will be shown only after the game is over
 10. An indication to show if the user has won or lost the game
+
+## How to play
+
+## Logics of the game
