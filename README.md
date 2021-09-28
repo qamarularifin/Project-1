@@ -1,5 +1,10 @@
 # Project-1: Mastermind Game
 
+## Background of the game:
+Guess the color of hidden pegs. A deduction game where each player 
+takes turn making a limited number of guesses, 
+using logic to deduce what pegs the opponent has hidden.
+
 ## Minimum requirement for the game:
 1. Choose color from the selector pegs
 2. Paint the guess pegs one row at a time
