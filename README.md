@@ -1,11 +1,11 @@
 # Project-1: Mastermind Game
 
-## Background of the game:
+## Background
 Guess the color of hidden pegs. A deduction game where each player 
 takes turn making a limited number of guesses, 
 using logic to deduce what pegs the opponent has hidden.
 
-## Link to the game
+## Link
 https://qamarularifin.github.io/Project-1/
 
 ## Minimum requirement for the game:
