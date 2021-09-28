@@ -9,9 +9,9 @@ using logic to deduce what pegs the opponent has hidden.
 https://qamarularifin.github.io/Project-1/
 
 ## Technologies
-HTML
-CSS
-Javascript
+- HTML
+- CSS
+- Javascript
 
 ## Minimum requirement
 1. Choose color from the selector pegs
