@@ -13,3 +13,6 @@ using logic to deduce what pegs the opponent has hidden.
 5. A correct guess peg and correct position will be painted as red in the result peg box
 6. A correct guess peg and wrong position will be painted as gray in the result peg box
 7. A wrong guess peg and wrong position will not return any color
+8. Answer pegs will be randomly generated and hidden
+9. Answer pegs will be shown only after the game is over
+10. An indication to show if the user has won or lost the game
