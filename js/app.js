@@ -1,7 +1,4 @@
 
-
-//const colors = ["red","pink","blue","purple","green","cyan","yellow","gray","orange","lime","black","navy"]
-
 const selectPin1 = ["red", "pink"]
 const selectPin2 = ["blue", "purple"]
 const selectPin3 = ["green", "cyan"]
@@ -9,9 +6,8 @@ const selectPin4 = ["yellow", "gray"]
 const selectPin5 = ["orange", "lime"]
 const selectPin6 = ["black", "navy"]
 
-const newSelectColor = []
-
-const overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
+let newSelectColor = []
+let overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
 
 let guessReversedArray = [];
 let guessReversedResultArray = [];
@@ -99,7 +95,6 @@ const colorsAnsToInt = (color) =>{
 
 }
 
-
 const answerPin = () =>{
     
     // change colors to selector colors
@@ -121,7 +116,6 @@ const answerShow = () => {
 
 }
 
-
 // reverse the guess-row-pin
 const reverseGuessRowPin = () =>{
     
@@ -140,7 +134,6 @@ const reverseGuessRowResultPin = () =>{
     })
     return guessReversedResultArray.reverse()
 }
-
 
 const selectPin = () =>{
     // Select color and assign selected peg with the color
@@ -224,14 +217,13 @@ const checkOverallAns = (guesses) =>{
                     }
                 }
             }}
+       
 
         console.log("dupAnsCheck", dupAnsCheck)
         console.log("overallGuessArr", guesses)
         console.log("results", results)
         
-        
         }
-
 
 const checkWin = () =>{
               
@@ -282,8 +274,8 @@ const submitButton = () =>{
 
         // get guess current row colors pushed to array "storedCurrentRowColor"
         storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
+   
     })
-
 
     // check all answers here
     checkSound.play()
@@ -311,18 +303,53 @@ $(()=>{
     $("#close").on("click", () =>{
         $(".how-container").removeClass("showp")
     })
-    ///////////////////////
+
+    $("#restart").on("click", () =>{
+        answerHide()
+        $(".guess-row-pin").css("border", "1px solid black")
+        $(".active").removeClass("active")
+        $(".guess-pin").css("background-color", "rgb(167, 154, 163)")
+        $(".guess-result").css("background-color", "rgb(228, 125, 84)")
+        $(".submit").css("background-color", newSelectColor[Math.floor(Math.random() * newSelectColor.length)]).text("Check!")
+        overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
+        guessReversedArray = [];
+        guessReversedResultArray = [];
+        currentRow = 0;
+        storedCurrentRowColor = [];
+        answerPinArr = [];
+        convAnswerPinArr = [];
+
+        arr4.forEach((item,i) =>{
+            // add guess-pin with class active
+            $(`#gpin_${currentRow}_${i}`).addClass("active")
+            // add guess-result with class active
+            $(`#gpin_ans_${currentRow-1}_${i}`).addClass("active")
+            // add guess-pin-row with class active
+            $(`#guess_row_pin_${currentRow}`).addClass("active")
+    
+            // get guess current row colors pushed to array "storedCurrentRowColor"
+            storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
+        })
+
+        answerPin()
+        for (let i = 1; i <=4; i++){
+            answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
+        }
+
+        convAnswerPinArr = colorsAnsToInt(answerPinArr)
+        console.log("Answer pin: ", convAnswerPinArr)
+      
+        
+    })
+    
 
     //======random select-pin color=========//
-
-
 
     const placeSelectPin = (selectPin) =>{
 
         return selectPin[Math.floor(Math.random() * selectPin.length)]
     }
 
-    
     
     // for (let i = 1; i < 7; i++){
     //     $(`#select-pin-${i}`).css("background-color", placeSelectPin(`${selectPin}`) + `${i}`)
@@ -344,7 +371,6 @@ $(()=>{
     //console.log("ans color array: ", newSelectColor)
 
     //====================================//
-
 
     answerHide()
     reverseGuessRowPin()
@@ -379,9 +405,7 @@ $(()=>{
         }
     }
 
-    
     submitButton()
     
-
 });
 

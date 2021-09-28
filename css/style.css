@@ -82,6 +82,18 @@ body {
   margin: 10px 700px 10px 10px;
   opacity: 1;
 }
+
+#restart {
+  background-color: #9aa3a0;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  padding: 10px 25px;
+  position: absolute;
+  margin: 10px 10px 10px 650px;
+  opacity: 1;
+}
 /* Modal ends here */
 
 #outer-body {
