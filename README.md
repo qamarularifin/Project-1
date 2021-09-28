@@ -12,6 +12,7 @@ https://qamarularifin.github.io/Project-1/
 - HTML
 - CSS
 - Javascript
+- DOM manipulation with JQuery
 
 ## Minimum requirement
 1. Choose color from the selector pegs
@@ -33,11 +34,29 @@ https://qamarularifin.github.io/Project-1/
 5. If the chose color doesn't exist, it will return nothing
 6. Player will be required to use his/her deductive reasoning to guess the correct pegs
 
-## Logics of the game
+## Game logic
 ### HTML
 - The game started off with the designing of the layout of the mastermind board using HTML
+- The layout of the game board was solely hardcoded in HTML as the board is considered as a static module
 - Initially, border lines were used in order to determine the correct position of the selector row, guess rows, results rows and answer row
 - Each row was wrapped by container divs in order to enable using of flex box to wrap around the circle pegs
 
 ### Javascript
-- In order for the game to be 
+- Game started off with having the player to be able to choose a color from the selector peg
+- Each peg (guess, result, answer, selector) is assigned with ids and this was done with the use of for loops
+- The next design of the game is to disable the other rows from being able to be selected. This was done dynamically by adding and removing class active for each row through a check button
+- Since the peg colors are in rgb format, they are converted into integers with the use if if conditions that return number 1 to 6
+- With integers, it will be easier to compare number to number instead of rgb to rgb in order to check for red pegs or gray pegs
+- These numbers were then stored in a master guess array which is a nested array of array. This enables the comparison of guess array to the answer array
+- For determining the red pegs (correct color, correct position), this is done by comparing the same numbers via a for loop. If they are the same, they are marked with a string to prevent duplication of same number
+- For determining of the gray pegs, this is determined by a nested for loops which will look out for same numbers and mark them out with string to prevent duplication of same number again
+- A for loop is then used to color the results pegs as red or gray depending on the answer results
+- If the current row exceeds level 9, the game will be over
+- Player wins if he/she attains all red pegs and the "check" button will be replaced by a "You win" text which is done by DOM manipulation JQuery. Otherwise, it will be replaced by a "You lose" text
+
+### CSS
+- The game started with basic styling of the pegs to have a circular shape by adjusting the border radius
+- Background colors and shadows were added for the game board
+- A bootstrap button "btn-primary" was used to style the "check" button
+- A modal was used with a "Mastermind" button which obscured the game board
+- A modal was also used for in game user instructions which pops out when the button is clicked and closes if the close button is clicked
