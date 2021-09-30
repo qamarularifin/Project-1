@@ -2,7 +2,7 @@
 
 $(()=>{
 
-    //-----modal---------//
+    //-----modal---------///
 
     $("#open").on("click", () =>{
         $(".modal-container").addClass("show")
