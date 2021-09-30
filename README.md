@@ -32,6 +32,12 @@ https://qamarularifin.github.io/Project-1/
 
 ## How to play
 
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > 45afda2c6e5050047406f18a542be3e7fea35d8c
+
 1. Player will click the colors from selector pegs (first row) and click on the guess pegs (row above)
 2. Based on the selected colors placed on the guess pegs, player will receive feedback/results from the results pegs on the right
 3. If the chosen color exists, and correct position, the results pegs will return red peg
@@ -41,7 +47,15 @@ https://qamarularifin.github.io/Project-1/
 
 ## Game logic
 
+<<<<<<< HEAD
+
 ### HTML
+
+=======
+
+### HTML
+
+> > > > > > > 45afda2c6e5050047406f18a542be3e7fea35d8c
 
 - The game started off with the designing of the layout of the mastermind board using HTML
 - The layout of the game board was solely hardcoded in HTML as the board is considered as a static module
@@ -49,6 +63,12 @@ https://qamarularifin.github.io/Project-1/
 - Each row was wrapped by container divs in order to enable using of flex box to wrap around the circle pegs
 
 ### Javascript
+
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > 45afda2c6e5050047406f18a542be3e7fea35d8c
 
 - Game started off with having the player to be able to choose a color from the selector peg
 - Each peg (guess, result, answer, selector) is assigned with ids and this was done with the use of for loops
@@ -63,6 +83,12 @@ https://qamarularifin.github.io/Project-1/
 - Player wins if he/she attains all red pegs and the "check" button will be replaced by a "You win" text which is done by DOM manipulation JQuery. Otherwise, it will be replaced by a "You lose" text
 
 ### CSS
+
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > 45afda2c6e5050047406f18a542be3e7fea35d8c
 
 - The game started with basic styling of the pegs to have a circular shape by adjusting the border radius
 - Background colors and shadows were added for the game board
