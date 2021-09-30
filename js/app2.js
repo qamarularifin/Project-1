@@ -30,6 +30,7 @@ $(()=>{
         storedCurrentRowColor = [];
         answerPinArr = [];
         convAnswerPinArr = [];
+        newSelectColor = []
 
         arr4.forEach((item,i) =>{
             // add guess-pin with class active
@@ -43,18 +44,24 @@ $(()=>{
             storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
         })
 
+        // need this to randomly change select pin colors
+        randomSelectPinColor()
+
+        // need this to change answerpin colors
+        ansFollowSelectPinColor()
+
+        // need answerpin to change answers
         answerPin()
+
         for (let i = 1; i <=4; i++){
             answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
         }
 
         convAnswerPinArr = colorsAnsToInt(answerPinArr)
         console.log("Answer pin: ", convAnswerPinArr)
-      
-        
+   
     })
     
-
     //======random select-pin color=========//
 
     const placeSelectPin = (selectPin) =>{
@@ -62,27 +69,38 @@ $(()=>{
         return selectPin[Math.floor(Math.random() * selectPin.length)]
     }
 
-    
     // for (let i = 1; i < 7; i++){
     //     $(`#select-pin-${i}`).css("background-color", placeSelectPin(`${selectPin}`) + `${i}`)
 
     // }
+
+    //===================to randomly assign different colors to select-pin=============//
+    const randomSelectPinColor = () =>{
+
+        $("#select-pin-1").css("background-color", placeSelectPin(selectPin1))
+        $("#select-pin-2").css("background-color", placeSelectPin(selectPin2))
+        $("#select-pin-3").css("background-color", placeSelectPin(selectPin3))
+        $("#select-pin-4").css("background-color", placeSelectPin(selectPin4))
+        $("#select-pin-5").css("background-color", placeSelectPin(selectPin5))
+        $("#select-pin-6").css("background-color", placeSelectPin(selectPin6))
     
-    $("#select-pin-1").css("background-color", placeSelectPin(selectPin1))
-    $("#select-pin-2").css("background-color", placeSelectPin(selectPin2))
-    $("#select-pin-3").css("background-color", placeSelectPin(selectPin3))
-    $("#select-pin-4").css("background-color", placeSelectPin(selectPin4))
-    $("#select-pin-5").css("background-color", placeSelectPin(selectPin5))
-    $("#select-pin-6").css("background-color", placeSelectPin(selectPin6))
-
-    //=========answer-pin to pick from placeSelectPin==============//
-
-    for (let i = 1; i <7; i++){
-        newSelectColor.push($(`#select-pin-${i}`).eq(0).css("background-color"))
     }
-    //console.log("ans color array: ", newSelectColor)
 
-    //====================================//
+    randomSelectPinColor()
+    //==================================================================================//
+
+    //=========answer-pin to pick from placeSelectPin===============================//
+
+    const ansFollowSelectPinColor = () =>{
+
+        for (let i = 1; i <7; i++){
+            newSelectColor.push($(`#select-pin-${i}`).eq(0).css("background-color"))
+        }
+        //console.log("ans color array: ", newSelectColor)
+    }
+
+    ansFollowSelectPinColor()
+    //===========================================================================//
 
     answerHide()
     reverseGuessRowPin()
