@@ -69,3 +69,15 @@ https://qamarularifin.github.io/Project-1/
 - A bootstrap button "btn-primary" was used to style the "check" button
 - A modal was used with a "Mastermind" button which obscured the game board
 - A modal was also used for in game user instructions which pops out when the button is clicked and closes if the close button is clicked
+
+### Struggles
+
+- Determining how to move to the next row
+- How to prevent the next row buttons from being clicked
+- How to compare the guesses with the answers algorithm (converting the colors into integers instead)
+- Creating algorithm to determine the gray pegs (correct color, wrong position). Initially, using .includes did not work as it does not cater for repeated numbers in the guess and answer array. Need to come up with a method which cancels out those guess and answers which have been checked. This is done by re-assigning the numbers as a string such as "x"
+
+### Good to have
+
+- A scoring system with local storage that can save the points scored
+- Changing the difficulty level i.e, 5 guess pegs instead of 4 guess pegs

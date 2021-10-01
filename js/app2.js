@@ -1,5 +1,4 @@
 
-
 $(()=>{
 
     //-----modal---------///
@@ -44,48 +43,36 @@ $(()=>{
             storedCurrentRowColor.push($(`#gpin_${currentRow-1}_${i}`).eq(0).css("background-color"))  // prints "rgb(255, 0, 0)"
         })
 
-        // need this to randomly change select pin colors
+        // randomly change select pin colors
         randomSelectPinColor()
 
-        // need this to change answerpin colors
+        // answer-pin to pick from placeSelectPin
         ansFollowSelectPinColor()
 
-        // need answerpin to change answers
+        // answerpin to change answers (Randomly assign colors to answer-pin)
         answerPin()
 
         for (let i = 1; i <=4; i++){
             answerPinArr.push($(`#answer-${i}`).eq(0).css("background-color"))
         }
-
+        // convert answerPinArr from colors to int
         convAnswerPinArr = colorsAnsToInt(answerPinArr)
         console.log("Answer pin: ", convAnswerPinArr)
    
     })
     
-    //======random select-pin color=========//
-
+    // randomly select-pin color
     const placeSelectPin = (selectPin) =>{
-
         return selectPin[Math.floor(Math.random() * selectPin.length)]
     }
-
-    // for (let i = 1; i < 7; i++){
-    //     $(`#select-pin-${i}`).css("background-color", placeSelectPin(`${selectPin}`) + `${i}`)
-
-    // }
 
     //===================to randomly assign different colors to select-pin=============//
     const randomSelectPinColor = () =>{
 
-        $("#select-pin-1").css("background-color", placeSelectPin(selectPin1))
-        $("#select-pin-2").css("background-color", placeSelectPin(selectPin2))
-        $("#select-pin-3").css("background-color", placeSelectPin(selectPin3))
-        $("#select-pin-4").css("background-color", placeSelectPin(selectPin4))
-        $("#select-pin-5").css("background-color", placeSelectPin(selectPin5))
-        $("#select-pin-6").css("background-color", placeSelectPin(selectPin6))
-    
+        for (let i = 1; i <= 6; i++){
+            $(`#select-pin-${i}`).css("background-color", placeSelectPin(selectPinColor[i - 1]))
+        }
     }
-
     randomSelectPinColor()
     //==================================================================================//
 
@@ -98,7 +85,6 @@ $(()=>{
         }
         //console.log("ans color array: ", newSelectColor)
     }
-
     ansFollowSelectPinColor()
     //===========================================================================//
 
@@ -124,15 +110,14 @@ $(()=>{
     // To provide id to individual guess-pin and guess-result and each guess-pin-row
     for(let i = 0; i < 10; i++) {
         
-        guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin"); // get individual guess pin
+        guessPinArr = guessReversedArray[i].getElementsByClassName("guess-pin"); // get individual guess pin, guessReversedArray is row
         guessPinResultArr = guessReversedResultArray[i].getElementsByClassName("guess-result") // get individual guess pin result
         $(guessReversedArray[i]).attr("id", `guess_row_pin_${i}`) //set individual id for each guess-pin-row
-    
-             
-    for(let j = 0; j < 4; j++) {
-        $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)  //$(guessPinArr[j]), j refers to 0
-        $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)  
-        }
+           
+        for(let j = 0; j < 4; j++) {
+            $(guessPinArr[j]).attr("id",`gpin_${i}_${j}`)  //$(guessPinArr[j]), j refers to 0, guessPinArr is individual guess pin
+            $(guessPinResultArr[j]).attr("id", `gpin_ans_${i}_${j}`)  
+            }
     }
 
     submitButton()

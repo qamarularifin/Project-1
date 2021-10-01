@@ -1,13 +1,15 @@
 
-const selectPin1 = ["red", "pink"]
-const selectPin2 = ["blue", "purple"]
-const selectPin3 = ["green", "cyan"]
-const selectPin4 = ["yellow", "gray"]
-const selectPin5 = ["orange", "lime"]
-const selectPin6 = ["black", "navy"]
+const selectPinColor =[
+    ["red", "pink"],
+    ["blue", "purple"],
+    ["green", "cyan"],
+    ["yellow", "gray"],
+    ["orange", "lime"],
+    ["black", "navy"],
+]
 
 let newSelectColor = []
-let overallGuessArr = [ [],[],[],[],[],[],[],[],[],[],]
+let overallGuessArr = [[],[],[],[],[],[],[],[],[],[],]
 
 let guessReversedArray = [];
 let guessReversedResultArray = [];
@@ -30,6 +32,7 @@ const lostSound = new Audio("./sounds/aww.mp3");
 let convAnswerPinArr;
 let convGuessPinArr;
 
+// To store the answers as int and for comparison of answers
 const displayOverallGuess = (pos, color) =>{
     let splitPos = pos.split("_")   
     //console.log(splitPos)  // ["gpin", "0", "0"]
@@ -93,7 +96,7 @@ const colorsAnsToInt = (color) =>{
         return newArr
 
 }
-
+// Randomly assign colors to answer-pin
 const answerPin = () =>{
     
     // change colors to selector colors
@@ -102,24 +105,23 @@ const answerPin = () =>{
     $("#answer-3").css("background-color", newSelectColor[Math.floor(Math.random() * newSelectColor.length)])
     $("#answer-4").css("background-color", newSelectColor[Math.floor(Math.random() * newSelectColor.length)])
 }
-
+// Hide the answer row
 const answerHide = () => {
     $(".answer-inner-row").hide()
     $(".submit").css("margin", "5px 0px 0px 130px")   // org position "5px 0px 0px 302px"
 
 }
-
+// Show the answer row
 const answerShow = () => {
     $(".answer-inner-row").show()
     $(".submit").css("margin", "5px 0px 0px 10px")   // org position "5px 0px 0px 302px"
 
 }
 
-// reverse the guess-row-pin
+// reverse the guess-row-pin from 9 to 0
 const reverseGuessRowPin = () =>{
     
     arr9.forEach((item, i) =>{ 
-
         guessReversedArray.push($(".guess-row-pin")[i])
     } )
     return guessReversedArray.reverse()
@@ -134,21 +136,21 @@ const reverseGuessRowResultPin = () =>{
     return guessReversedResultArray.reverse()
 }
 
+// Select color and assign selected peg with the color
 const selectPin = () =>{
-    // Select color and assign selected peg with the color
-
-    console.log("current row: ", currentRow)
+    
+    //console.log("current row: ", currentRow)
     
         $(".select-pin").on("click", (event) =>{
             $chosenColor = $(event.target).css("background-color")
             console.log($chosenColor)
-
+            // only active pins can be clicked
             $(".guess-pin.active").on("click", (event)=>{
 
                 if ($(event.target).hasClass("active")){
                     $(event.target).css("background-color", $chosenColor)
                     // generate an id based on button pressed
-                    let $guessPinId = $(event.target).attr("id")    //here issue is duplicatess
+                    let $guessPinId = $(event.target).attr("id")    
                     displayOverallGuess($guessPinId, $chosenColor)    
                 } 
               
@@ -157,7 +159,7 @@ const selectPin = () =>{
         })
 }
 
-
+// highlight current row with white border
 const highlightRow = () =>{
 
     if ($(".guess-row-pin").hasClass("active")){
@@ -166,13 +168,14 @@ const highlightRow = () =>{
     } 
     
 }
-
+// hightlight all rows if won
 const winningHighlightRow = () =>{
     $(".guess-row-pin").css("border", "1.5px solid white")
 }
 
 
 // guesses is an array from overallGuessArr ===> checkOverallAns(overallGuessArr[currentRow-1])
+// Compare answers in form of int
 const checkOverallAns = (guesses) =>{
         let results = []
         let dupAnsCheck = []  
@@ -180,7 +183,6 @@ const checkOverallAns = (guesses) =>{
         convAnswerPinArr.forEach(ans => dupAnsCheck.push(ans))
         console.log("org dupAns", dupAnsCheck)
 
-        ///////////////////////////
         guesses.forEach((guess, index) =>{
             // color the results pin as red
             if(guess === dupAnsCheck[index]){  // guess is each element within an array
@@ -199,7 +201,6 @@ const checkOverallAns = (guesses) =>{
             }  
             
         })
-        ///////////////////////////////
 
             // color the results pin as gray
             for (let i = 0; i < 4; i++){
@@ -209,6 +210,7 @@ const checkOverallAns = (guesses) =>{
                         dupAnsCheck[j] = "x"
                         guesses[i] = "y"
                         
+                        // color the results pin as gray
                         for (let i = 0; i < 4; i++){
                             if (results[i] === "semi"){
                                 $(`#gpin_ans_${currentRow-1}_${i}`).css("background-color", "gray")
@@ -217,13 +219,13 @@ const checkOverallAns = (guesses) =>{
                 }
             }}
        
-
         console.log("dupAnsCheck", dupAnsCheck)
         console.log("overallGuessArr", guesses)
         console.log("results", results)
         
         }
 
+// check if all reds, then highlight all rows, show answer and play sound
 const checkWin = () =>{
               
             if ($(`#gpin_ans_${currentRow-1}_${0}`).css("background-color") === "rgb(255, 0, 0)"
@@ -254,9 +256,9 @@ const submitButton = () =>{
     // Remove all .active class
     $(".active").removeClass("active")
     
-    console.log("Guess pin :", overallGuessArr[currentRow])
-    console.log("current row: ", currentRow)
-    
+    //console.log("Guess pin: ", overallGuessArr[currentRow])
+    //console.log("current row: ", currentRow)
+    // increase currentRow once button clicked
     currentRow++
     
     // Add above row with active class and move .active class one row upwards 
@@ -276,7 +278,6 @@ const submitButton = () =>{
    
     })
 
-    // check all answers here
     checkSound.play()
     checkOverallAns(overallGuessArr[currentRow-1])
     checkWin()     
