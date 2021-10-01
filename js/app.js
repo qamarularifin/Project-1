@@ -236,6 +236,7 @@ const checkWin = () =>{
                 winningHighlightRow()
                 answerShow()
                 winSound.play()
+                $(".active").removeClass("active")
             }
 
             // lost game if exceed currentRow 9
